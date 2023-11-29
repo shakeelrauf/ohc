@@ -1,0 +1,96 @@
+en:
+  activerecord:
+    errors:
+      models:
+        authentication:
+          attributes:
+            base:
+              invalid_login: 'Username or password is invalid'
+            password:
+              must_contain_digit: 'must contain a digit'
+              must_contain_lc_character: 'must contain a lowercase character'
+              must_contain_uc_character: 'must contain an uppercase character'
+        event:
+          attributes:
+            base:
+              already_closed: 'Stream has already been closed'
+              none_available: 'No streams are currently available'
+              over_max: 'Maximum number of active streams reached'
+            camp_ids:
+              too_short: 'You must select at least one camp'
+            cabin_ids:
+              too_short: 'You must select at least one cabin'
+        attendance:
+          attributes:
+            base:
+              camp_assigment_fail: 'This user could not be assigned to the chat for their camp'
+        quiz_question:
+          attributes:
+            text:
+              no_answers: 'Must have at least one correct answer'
+        stream:
+          attributes:
+            base:
+              too_many: 'You have reached the maximum number of streams for your plan'
+        user:
+          attributes:
+            base:
+              too_many: 'You have reached the maximum number of users for your plan'
+    models:
+      attendance:
+        one: 'Attendance'
+        other: 'Attendances'
+      cabin:
+        one: 'Cabin'
+        other: 'Cabins'
+      camp:
+        one: 'Camp Week'
+        other: 'Camp Weeks'
+      camp_location:
+        one: 'Camp Location'
+        other: 'Camp Locations'
+      camper_question:
+        one: 'Question'
+        other: 'QBox Questions'
+      color_theme:
+        one: 'Color Theme'
+        other: 'Color Themes'
+      event/cabin_event:
+        one: 'Cabin Event'
+        other: 'Cabin Events'
+      event/camp_event:
+        one: 'Camp Event'
+        other: 'Camp Events'
+      event/national_event:
+        one: 'National Event'
+        other: 'National Events'
+      media_item/camp_media_item:
+        one: 'Camp Media Item'
+        other: 'Camp Gallery'
+      media_item/national_media_item:
+        one: 'National Media Item'
+        other: 'National Gallery'
+      user/admin:
+        one: 'Admin'
+        other: 'Admins'
+      user/child:
+        one: 'Camper'
+        other: 'Campers'
+      season:
+        one: 'Season'
+        other: 'Seasons'
+      setting:
+        one: 'Setting'
+        other: 'App Settings'
+      tenant:
+        one: 'Tenant'
+        other: 'Tenants'
+      theme:
+        one: 'Quiz'
+        other: 'Quizit'
+      welcome_video:
+        one: 'Welcome Video'
+        other: 'Welcome Videos'
+    attributes:
+      user:
+        last_active_at: 'Last Active'

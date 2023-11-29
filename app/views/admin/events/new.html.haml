@@ -1,0 +1,7 @@
+- title_bar new_button_label(@event.class)
+
+= bootstrap_form_with model: @event, url: events_path(event_type: params[:event_type]), local: true, scope: :event do |event_form|
+  = render 'form', event_form: event_form
+
+  = event_form.form_group do
+    = event_form.submit create_button_label(@event.class), class: 'btn btn-success'

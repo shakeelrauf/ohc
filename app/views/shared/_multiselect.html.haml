@@ -1,0 +1,15 @@
+.multiselect
+  .hidden
+    = builder.select attribute, values, { label: label }, multiple: true, id: id
+
+  = builder.form_group label: { text: label } do
+    %ul.list-group{ data: { target: "##{id}" }, class: (builder.object.errors[attribute].any? ? 'is-invalid' : '') }
+      - values.each do |label, id|
+        %li.list-group-item{ data: { value: id }, class: (builder.object.send(attribute).include?(id) ? 'active' : '') }
+          = builder.object.send(attribute).include?(id) ? icon('check-square') : icon('square')
+          = label
+
+    - if builder.object.errors[attribute].any?
+      %ul.invalid-feedback
+        - builder.object.errors[attribute].each do |error|
+          %li= error

@@ -1,0 +1,78 @@
+- title_bar @camp_location.name do
+  = new_button(new_button_label(Season), new_camp_location_season_path(@camp_location))
+
+%p= page_entries_info @seasons, entry_name: entry_name_label(Season)
+
+= paginate @seasons
+
+.row.mb-3.align-items-center
+  .col-12.col-md-8
+    Sort:
+    = sort_link(@search, :name)
+    |
+    = sort_link(@search, :created_at, 'Created')
+
+  .col-12.col-md-4
+    = search_form_for @search, url: camp_location_path(@camp_location) do |s|
+      .input-group
+        = s.search_field :name_cont, placeholder: "Search (#{model_name(Season)} Name)", class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+- @seasons.each do |season|
+  .card.mb-3
+    .card-header
+      .row
+        .col-10
+          %strong= "#{model_name(Season)}:"
+          = season.name
+        .col-2.text-end
+          = link_to "#{icon('edit')} Edit".html_safe, edit_camp_location_season_path(@camp_location, season), class: 'btn btn-info btn-sm'            
+
+    .card-body
+      - season.camps.accessible_by(current_ability).each do |camp|
+        .card.mb-1.bg-light
+          .card-header
+            .row
+              .col-8
+                %strong= "#{model_name(Camp)}:"
+                = camp.name
+                = link_to "#{icon('edit')} Edit".html_safe, edit_season_camp_path(camp.season, camp), class: 'btn btn-info btn-sm'
+              .col-4
+                %p.text-end
+                = link_to "#{icon('image')} #{model_name(MediaItem::CampMediaItem, plural: true)}".html_safe, camp_media_items_path(camp), class: 'btn btn-info btn-sm'
+                = link_to "#{icon('upload')} Import".html_safe, new_camp_import_path(camp), class: 'btn btn-info btn-sm'
+                = link_to "#{icon('download')} Export".html_safe, camp_attendances_path(camp, format: :csv), class: 'btn btn-info btn-sm'
+                = new_button new_button_label(Cabin), new_camp_cabin_path(camp)
+
+
+          .card-body
+            
+            .row.mb-2.row-cols-auto          
+              - camp.cabins.accessible_by(current_ability).each do |cabin|
+                .col.lg-4.col-sm-3.col-md-2
+                  .card.text-bg-info.mb-1{DATA: {href: camp_cabin_path(cabin.camp, cabin) } }
+                    .card-body
+                      .row 
+                        .col-9                      
+                          %p.text.font-size-lg
+                            %strong= cabin.name
+                        .col-2.col-md-1.me1.text-end
+                          = link_to "#{icon('edit')}".html_safe, edit_camp_cabin_path(camp, cabin), class: 'btn btn-info btn-sm'
+                        %p.text.font-size-sm 
+                          %strong= cabin.gender 
+                          %strong= "#{model_name(User::Child, plural: true)}:"
+                          = cabin.children.count
+                        
+                          
+
+
+
+      .card.mb-3.bg-light
+        .card-body.text-center= new_button new_button_label(Camp), new_season_camp_path(season)
+
+- if @seasons.none?
+  .card.mb-3
+    .card-body.text-center.disabled= no_items_label(Season)
+
+= paginate @seasons

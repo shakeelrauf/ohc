@@ -1,0 +1,65 @@
+- title_bar new_button_label(MediaItem)
+
+= bootstrap_form_with model: @media_item, local: true, url: (@media_item.camp ? camp_media_items_path(@media_item.camp, format: 'js') : media_items_path(format: 'js')), id: 'new-media-item', scope: :media_item do |f|
+  .fallback
+    = render 'form', f: f
+
+    = f.form_group do
+      = f.submit create_button_label(MediaItem), class: 'btn btn-success', data: { disable_with: 'Uploading...' }
+
+  .card.drop-area.mb-3
+    .card-body.text-center.m-5
+      = icon('upload-cloud')
+      %br
+      Drop files here to click to upload
+
+  %p.form-text.text-muted= t('help.file_field', file_type: 'MP4, PNG, JPG', file_size: number_to_human_size(MediaItem::MAX_FILE_SIZE)).html_safe
+
+#previews
+  .card.mb-3
+    .card-body
+      .row.align-items-center
+        .col-3
+          .preview.img-thumbnail
+            %img{ data: { 'dz-thumbnail': '' } }
+        .col-3
+          %strong Filename:
+          %p.m-0.name{ data: { 'dz-name': '' } }
+        .col-3
+          %strong Size:
+          %p.m-0.size{ data: { 'dz-size': '' } }
+        .col-3
+          %strong Progress:
+          .progress.progress-striped.active{ aria: { valuemax: '100', valuemin: '0', valuenow: '0' }, role: 'progressbar'}
+            .progress-bar.progress-bar-success{ data: { 'dz-uploadprogress': '' }, style: 'width: 0%;' }
+
+          .error.text-danger{ data: { 'dz-errormessage': '' } }
+          .success.d-none Complete
+
+= link_to "#{icon('list')} Back To List".html_safe, @media_item.camp ? camp_media_items_path(@media_item.camp) : media_items_path, class: 'btn btn-primary'
+
+:javascript
+  document.addEventListener('turbolinks:load', () => {
+    const previewNode = $('#previews');
+    const previewTemplate = previewNode.html();
+
+    previewNode.html('');
+
+    const mediaDropZone = new Dropzone('#new-media-item', {
+      paramName: 'media_item[attachment]',
+      thumbnailHeight: 50,
+      thumbnailWidth: 50,
+      parallelUploads: 1,
+      maxFilesize: #{MediaItem::MAX_FILE_SIZE / 1024 / 1024}, // In MB
+      previewTemplate: previewTemplate,
+      previewsContainer: "#previews",
+      clickable: ".drop-area",
+      acceptedFiles: 'image/png,image/jpg,image/jpeg,video/mp4',
+      timeout: 1800000 // 30 Minutes
+    });
+
+    mediaDropZone.on('complete', function(file) {
+      file.previewElement.querySelector('.progress').classList.add('d-none');
+      file.previewElement.querySelector('.success').classList.remove('d-none');
+    });
+  });

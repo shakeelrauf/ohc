@@ -1,0 +1,8 @@
+- title_bar "Edit #{@welcome_video.name}" do
+  = delete_button(welcome_video_path(@welcome_video), text: "Delete #{@welcome_video.name}", remote: false)
+
+= bootstrap_form_with model: @welcome_video do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(WelcomeVideo), class: 'btn btn-success'

@@ -1,0 +1,8 @@
+= bootstrap_form_with url: search_path, method: :get, local: true do |f|
+  = f.form_group do
+    = f.label :search_term, 'Search'
+    = f.text_field :search_term, value: params[:search_term], wrapper: false
+    %small= message
+
+  = f.form_group do
+    = f.submit 'Search'

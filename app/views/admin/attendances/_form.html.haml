@@ -1,0 +1,65 @@
+%h3= model_name(Attendance, plural: true)
+
+#attendances.nested-form
+  .nested-items
+    = f.fields_for :attendances do |a|
+      = render 'admin/attendances/attendance_fields', f: a
+
+  .card.mb-3
+    .card-body.text-center
+      .links
+        = link_to_add_association "#{icon('plus')} Add Attendance".html_safe, f, :attendances, partial: 'admin/attendances/attendance_fields', class: 'btn btn-sm btn-link'
+
+:javascript
+  document.addEventListener('turbolinks:load', () => {
+    $(document).on('change', '.camp-location-select', function(e) {
+      const value = $(this).val();
+      const $target = $(this).parents('.nested-fields').find('.season-select');
+      const $children = $(this).parents('.nested-fields').find('.season-select, .camp-select, .cabin-select');
+
+      nullAndDisableSelects($children);
+
+      if (value != '') replaceSelectContents($target, `/admin/camp_locations/${value}/seasons.json`)
+    });
+
+    $(document).on('change', '.season-select', function(e) {
+      const value = $(this).val();
+      const $target = $(this).parents('.nested-fields').find('.camp-select');
+      const $children = $(this).parents('.nested-fields').find('.camp-select, .cabin-select');
+
+      nullAndDisableSelects($children);
+
+      if (value != '') replaceSelectContents($target, `/admin/seasons/${value}/camps.json`)
+    });
+
+    $(document).on('change', '.camp-select', function(e) {
+      const value = $(this).val();
+      const $target = $(this).parents('.nested-fields').find('.cabin-select');
+      const $children = $(this).parents('.nested-fields').find('.cabin-select');
+
+      nullAndDisableSelects($children);
+
+      if (value != '') replaceSelectContents($target, `/admin/camps/${value}/cabins.json`)
+    });
+
+    function replaceSelectContents(target, url) {
+      $.getJSON(url, function(json) {
+        target.empty();
+        target.removeAttr('disabled');
+        target.append($('<option>').text(target.data('prompt')));
+
+        $.each(json, function(i, obj) {
+          target.append($('<option>').text(obj.name).attr('value', obj.id));
+        });
+
+        target.trigger('change');
+      });
+    }
+
+    function nullAndDisableSelects(targets) {
+      targets.empty();
+      targets.attr('disabled', 'disabled');
+    }
+  });
+
+= render 'admin/attendances/at_least_one' if f.object.is_a?(User::Child) && !current_user.super_admin?

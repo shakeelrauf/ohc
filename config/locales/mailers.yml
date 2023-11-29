@@ -1,0 +1,18 @@
+en:
+  contact_us_mailer:
+    contact_us:
+      subject: "Faith Spark: Contact Us - %{identifier}"
+  event_mailer:
+    warning:
+      subject: "Faith Spark: Live event duration limit alert - %{name} - %{tenant}"
+    stopped:
+      subject: "Faith Spark: Live event duration limit reached - %{name} - %{tenant}"
+  notification_mailer:
+    camper_question:
+      subject: "Faith Spark: New %{model} / Nouvelle question"
+  password_mailer:
+    reset_multiple:
+      subject: 'Faith Spark: Account Details Reminder | Rappel des renseignements sur le compte'
+  tenant_mailer:
+    warning:
+      subject: 'Faith Spark: Stream limit near for %{name}'

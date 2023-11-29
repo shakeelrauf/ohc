@@ -1,0 +1,7 @@
+- title_bar new_button_label(Stream)
+
+= bootstrap_form_with model: @stream, url: streams_path, local: true do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit create_button_label(Stream), class: 'btn btn-success'

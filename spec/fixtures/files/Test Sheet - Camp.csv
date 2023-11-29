@@ -1,0 +1,9 @@
+First Name,Last Name,Date of Birth (YYYY-MM-DD),Gender,Parent Email,Cabin/Small Group
+Sara,Power,2010-06-01,female,sara.parent@test.com,Red Team
+Gillian,Marín,2010-06-02,female,gillian.parent@test.com,Red Team
+Lori,Sheridan,2010-06-03,female,lori.parent@test.com,Red Team
+Mónica,Clegg,2010-06-03,female,sheetchild.three@test.com,Red Team
+Walter,Espinosa,2010-06-04,male,espinosa.parent@test.com,Blue Team
+Eliot,Espinosa,2010-06-04,male,espinosa.parent@test.com,Blue Team
+,,,,camp.admin@test.com,Red Team
+,,,,cabin.admin@test.com,Red Team

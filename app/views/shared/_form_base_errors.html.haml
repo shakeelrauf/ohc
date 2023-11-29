@@ -1,0 +1,3 @@
+- if f.object.errors[:base].any?
+  .alert.alert-danger
+    %p.m-0= f.object.errors[:base].to_a.to_sentence.html_safe

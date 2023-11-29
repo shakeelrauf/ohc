@@ -1,0 +1,8 @@
+- title_bar "Edit #{@camp.name}" do
+  = delete_button(season_camp_path(@camp.season, @camp), text: "Delete #{@camp.name}", disabled: !@camp.can_be_deleted?)
+
+= bootstrap_form_with model: @camp, local: true, url: season_camp_path(@camp.season, @camp) do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(Camp), class: 'btn btn-success', data: { disable_with: 'Uploading...' }

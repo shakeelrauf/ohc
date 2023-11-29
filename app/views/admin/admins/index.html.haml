@@ -1,0 +1,48 @@
+- title_bar model_name(User::Admin, plural: true) do
+  - if can?(:create, @new_admin)
+    = new_button(new_button_label(User::Admin), new_admin_path)
+
+.row.mb-3.align-items-center
+  .col-12.col-md-4
+    = page_entries_info @admins, entry_name: entry_name_label(User::Admin)
+
+  .col-12.col-md-8
+    = search_form_for @search, url: admins_path do |s|
+      .input-group
+        = s.select :camp_locations_id_eq, CampLocation.accessible_by(current_ability).order(:name).pluck(:name, :id), { include_blank: "All #{model_name(CampLocation, plural: true)}" }, { class: 'form-control form-control-sm' }
+        = s.search_field :first_name_cont, placeholder: 'First Name', class: 'form-control form-control-sm'
+        = s.search_field :last_name_cont, placeholder: 'Last Name', class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @admins
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th= sort_link(@search, :authentication_username)
+        %th= sort_link(@search, :first_name)
+        %th= sort_link(@search, :last_name)
+        %th= sort_link(@search, :email)
+        %th= sort_link(@search, :last_active_at)
+        %th= User.human_attribute_name(:role)
+        %th= User.human_attribute_name(:camp_locations)
+        %th.actions Action
+
+    %tbody
+      - @admins.each do |admin|
+        %tr{ id: dom_id(admin) }
+          %td= admin&.authentication&.username
+          %td= admin.first_name
+          %td= admin.last_name
+          %td= admin.email
+          %td= formatted_date(admin.last_active_at)
+          %td= admin.role.humanize
+          %td= admin.camp_locations.accessible_by(current_ability).order(:name).pluck(:name).to_sentence
+          %td.actions
+            = action_button(icon('clipboard'), 'Attendances', user_attendances_path(admin))
+            = action_button(icon('list'), 'High Scores', user_scores_path(admin))
+            = edit_button(edit_admin_path(admin),'') if can?(:update, admin)
+
+= paginate @admins

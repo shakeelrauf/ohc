@@ -1,0 +1,19 @@
+.card.nested-fields.mb-3
+  .card-header.text-end.p-0.pe-2
+    = link_to_remove_association "#{icon('trash-2')}".html_safe, f, class: 'btn btn-sm btn-link'
+
+  .card-body
+    .row
+      .col-6
+        = f.text_field :text, maxlength: 130, label: 'Question', help: 'Max 130 characters'
+      .col-6
+        = f.label :answers
+
+        .nested-form
+          .nested-items
+            = f.fields_for :answers do |f|
+              = render 'answer_fields', f: f
+
+          .card.mb-3
+            .card-body.text-center.bg-light
+              = link_to_add_association "#{icon('plus')} Add Answer".html_safe, f, :answers, class: 'btn btn-sm btn-link'

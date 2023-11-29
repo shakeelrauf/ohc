@@ -1,0 +1,28 @@
+= event_form.text_field :name
+= event_form.text_area :description
+
+- help_text = t('help.datetime_field', link: edit_admin_path(current_user), zone: Time.zone).html_safe
+
+
+- if browser.safari?("< 14")
+  = event_form.datetime_select :starts_at, help: help_text
+  = event_form.datetime_select :ends_at, help: help_text
+- else
+  = event_form.form_group help: 'Syncs the start and end dates when editing either field' do
+    = event_form.check_box :sync_dates, checked: true
+
+  = event_form.datetime_field :starts_at, help: help_text
+  = event_form.datetime_field :ends_at, help: help_text
+
+= attachment_file_field event_form, :thumbnail, label: 'Image',
+                                                help: "#{t('help.file_field', file_type: 'PNG, JPG', file_size: number_to_human_size(Event::MAX_FILE_SIZE))}<br />Dimensions: 1500x1500px, maintain a 150px gap on the left and right for the safe zone to display correctly on most devices".html_safe,
+                                                data: { toggle: 'tooltip', placement: 'bottom', html: true,  title: image_tag('safe_zone.png').html_safe }
+
+- case event_form.object.class.to_s
+- when 'Event::CabinEvent'
+  = multiselect event_form, :cabin_ids, cabins_for_select_for_user(current_ability), model_name(Cabin, plural: true), 'event_cabin_ids'
+- when 'Event::CampEvent'
+  = multiselect event_form, :camp_ids, camps_for_select_for_user(current_ability), model_name(Camp, plural: true), 'event_camp_ids'
+
+= event_form.form_group label: { text: 'Visible in app' }, help: 'Show/hide this event from the app' do
+  = event_form.check_box :active

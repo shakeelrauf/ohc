@@ -1,0 +1,160 @@
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar {
+  bottom: 0;
+  box-shadow: inset -1px 0 0 $color-black-10;
+  left: 0;
+  padding: 85px 0 0; /* Height of navbar */
+  position: fixed;
+  top: 0;
+  z-index: 100; /* Behind the navbar */
+
+  .nav-link {
+    fw: 500;
+    color: $color-grey-tundora;
+
+    .feather {
+      margin-right: 4px;
+      color: $color-grey-pale;
+    }
+
+    &.active {
+      color: $color-blue-denim;
+    }
+
+    &:hover,
+    &:active {
+      .feather {
+        color: inherit;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .sidebar {
+    padding-top: 48px;
+  }
+}
+
+.sidebar-heading {
+  align-items: center;
+  display: flex;
+  font-size: .75rem;
+  justify-content: space-between;
+  text-transform: uppercase;
+
+  @extend .mb-1;
+  @extend .mt-4;
+  @extend .px-3;
+  @extend .text-muted;
+}
+
+/*
+ * Content
+ */
+
+[role='main'] {
+  padding-top: 90px; /* Space for fixed navbar */
+  position: relative;
+}
+
+@include media-breakpoint-up(lg) {
+  [role='main'] {
+    padding-top: 60px; /* Space for fixed navbar */
+     position: relative;
+  }
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-ohc {
+  background-color: $color-blue-denim;
+  box-shadow: 0 0.5rem 1rem $color-black-25;
+  padding: 0 !important; // Prevents padding being overridden by node_modules Bootstrap on template variants page
+  align-items: flex-start;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.navbar-brand {
+  align-items: center;
+  align-self: stretch;
+  background-color: $color-black-25;
+  box-shadow: inset -1px 0 0 $color-black-25;
+  display: flex;
+  font-size: 1rem;
+  margin-right: 0;
+  padding-bottom: .75rem;
+  padding-top: .75rem;
+}
+
+.navbar-submenu {
+  flex-direction: row;
+  line-height: 1em;
+  margin: 0 65px 0 auto;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.navbar-toggler {
+  position: absolute;
+  right: 6px;
+  top: 4px;
+}
+
+.navbar-nav {
+  .nav-link {
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+}
+
+.breadcrumbs {
+  color: $color-white-50;
+
+  .breadcrumb {
+    background: transparent;
+    margin: 0;
+
+    a {
+      color: $color-white-75;
+    }
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: $color-white-10;
+  }
+}
+
+.form-control-dark {
+  color: $color-white;
+  background-color: $color-white-10;
+  border-color: $color-white-10;
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px $color-white-25;
+  }
+}

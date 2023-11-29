@@ -1,0 +1,7 @@
+inherit_gem:
+  rubocop-dubit:
+    - config/default.yml
+
+inherit_mode:
+  merge:
+    - Exclude

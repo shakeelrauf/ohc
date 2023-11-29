@@ -1,0 +1,5 @@
+= render 'shared/form_base_errors', f: f
+
+= f.text_field :name
+
+= f.text_field :notification_email, help: t('help.camp_locations.notification_email', model: model_name(CamperQuestion, plural: true)).html_safe

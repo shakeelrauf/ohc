@@ -1,0 +1,17 @@
+%ul.list-unstyled
+  %li
+    %strong Url:
+    %br
+    %span{ id: "stream-url-#{event.id}" } #{event.stream.input_url}
+    %a.copy-to-clipboard{ href: '#', data: { target: "#stream-url-#{event.id}" } } #{icon('clipboard')}
+
+  %li
+    %strong Key:
+    %br
+    %span{ id: "stream-key-#{event.id}" } #{event.stream.key}
+    %a.copy-to-clipboard{ href: '#', data: { target: "#stream-key-#{event.id}" } } #{icon('clipboard')}
+
+  %li
+    %strong Status:
+    %br
+    #{event.stream.channel.state}

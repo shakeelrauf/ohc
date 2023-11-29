@@ -1,0 +1,17 @@
+= sidebar_sublist('User Management') do
+  = nav_link CampLocation, camp_locations_path, 'compass'
+  = nav_link User::Child, camp_location_children_path(current_user.camp_location), 'users'
+
+= sidebar_sublist('Content') do
+  = nav_link CamperQuestion, camper_questions_path, 'help-circle'
+  = nav_link Theme, themes_path, 'check-square'
+
+= sidebar_sublist('Events') do
+  = nav_link Event::CampEvent, events_path(event_type: 'camp'), 'cast'
+  = nav_link Event::CabinEvent, events_path(event_type: 'cabin'), 'cast'
+
+= sidebar_sublist('Admin Settings') do
+  = nav_link User::Admin, admins_path, 'users'
+  = nav_link 'Conversation Review', conversations_path, 'message-square'
+
+= render 'shared/training_manual'

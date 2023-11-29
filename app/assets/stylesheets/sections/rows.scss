@@ -1,0 +1,20 @@
+[data-href] {
+  cursor: pointer;
+}
+
+[data-href],
+.card-header {
+  .more {
+    visibility: hidden;
+    margin-top: -6px;
+    margin-bottom: -6px;
+  }
+
+  &:hover {
+    background: $color-grey-light;
+
+    .more {
+      visibility: visible;
+    }
+  }
+}

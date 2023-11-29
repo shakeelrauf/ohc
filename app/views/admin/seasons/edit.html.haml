@@ -1,0 +1,8 @@
+- title_bar "Edit #{@season.name}" do
+  = delete_button(camp_location_season_path(@season.camp_location, @season), text: "Delete #{@season.name}", remote: false, disabled: !@season.can_be_deleted?)
+
+= bootstrap_form_with model: @season, url: camp_location_season_path(@season.camp_location, @season) do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(Season), class: 'btn btn-success'

@@ -1,0 +1,23 @@
+%h3.text-center.mb-4 Modifier le mot de passe
+
+= bootstrap_form_for @authentication, url: password_path(@authentication), method: :patch do |f|
+  = f.password_field :password, placeholder: 'Nouveau mot de passe',
+                                id: 'password',
+                                hide_label: true,
+                                append: content_tag(:a, icon('eye-off'), href: '', class: 'toggle-password-field', data: { toggle: '#password' })
+
+  - unless f.object.errors[:password].any?
+    %small.form-text
+      Votre nouveau mot de passe doit être composé de plus de 6 caractères et comprendre :
+
+      %ul
+        %li d’un chiffre
+        %li d’une lettre minuscule
+        %li d’une lettre majuscule
+
+  = hidden_field_tag :id, @authentication.id
+  = hidden_field_tag :reset_token, @authentication.password_reset_token&.token
+  = hidden_field_tag :locale, params[:locale]
+
+  = f.form_group do
+    = f.submit 'Mettre à jour le mot de passe'

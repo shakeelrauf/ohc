@@ -1,0 +1,9 @@
+.card.nested-fields.mb-3.bg-light
+  .card-header.text-end.p-0.pe-2
+    = link_to_remove_association "#{icon('trash-2')}".html_safe, f, class: 'btn btn-sm btn-link'
+
+  .card-body
+    = f.text_field :text, maxlength: 30, label: 'Answer', help: 'Max 30 characters'
+
+    = f.form_group help: 'Mark this as the correct answer' do
+      = f.check_box :correct

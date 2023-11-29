@@ -1,0 +1,61 @@
+= render 'shared/form_base_errors', f: f
+
+= f.text_field :name
+
+= f.number_field :max_users, min: 1,
+                             step: 1,
+                             help: 'Maximum number of users, including all roles such as Admin, Camp Admin, Camper etc',
+                             disabled: !current_user.tenant_admin?
+
+= f.number_field :max_streams, min: 1,
+                               step: 1,
+                               help: 'Maximum number of simultaneous steams',
+                               disabled: !current_user.tenant_admin?
+
+= f.number_field :max_stream_hours, min: 1,
+                                    step: 1,
+                                    help: 'Maximum number of hours streaming per month',
+                                    disabled: !current_user.tenant_admin?
+
+= f.form_group label: { text: 'Color theme' } do
+  .row
+    - ColorTheme.accessible_by(current_ability).each do |color_theme|
+      .col.text-center.btn-center
+        .row
+          %label{ data: { app_layout: color_theme.app_layout } }
+            = render 'admin/color_themes/preview', color_theme: color_theme
+        .row.align-self-end.mx-auto
+          .col-5
+          .col-7
+            = f.radio_button :color_theme_id, color_theme.id, hide_label: true
+
+
+#tenant-logo
+  = attachment_file_field f, :logo, help: t('help.file_field', file_type: 'PNG, JPG', file_size: number_to_human_size(Tenant::MAX_FILE_SIZE)).html_safe
+
+%h1 Custom Labels (Optional)
+
+.row
+  = f.fields_for :custom_labels, f.object.custom_labels.sort { |a, b| [a.class_name, a.locale] <=> [b.class_name, b.locale]  } do |l|
+    = l.hidden_field :id
+    = l.hidden_field :class_name
+    = l.hidden_field :locale
+
+    .col12.col-md-3= l.text_field :singular, label: l.object.class_name.constantize.model_name.human, help: "Singular (#{l.object.locale})"
+    .col12.col-md-3= l.text_field :plural, label: l.object.class_name.constantize.model_name.human(count: 2), help: "Plural (#{l.object.locale})"
+
+:javascript
+  document.addEventListener('turbolinks:load', () => {
+    $('input[name="tenant[color_theme_id]"]').on('change', function() {
+      let $logoContainer = $('#tenant-logo');
+      let layout = $(this).parents('label').data('app-layout');
+
+      if (layout == 'my_camp') {
+        $logoContainer.addClass('d-none');
+      } else {
+        $logoContainer.removeClass('d-none');
+      }
+    });
+
+    $('input[name="tenant[color_theme_id]"]:checked').trigger('change');
+  });

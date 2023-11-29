@@ -1,0 +1,4 @@
+= f.text_field :name
+= f.select :gender, f.object.class.genders.map { |key, value| [key.humanize, value] }
+
+= render 'shared/welcome_or_custom_video', f: f

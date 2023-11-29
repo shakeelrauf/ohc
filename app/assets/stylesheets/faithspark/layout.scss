@@ -1,0 +1,28 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: $background-color;
+  color: $font-color;
+  font-family: 'Montserrat', sans-serif;
+  fw: 600;
+}
+
+.container {
+  background: image-url('faithspark/bg.png') bottom center no-repeat;
+  background-size: 30%;
+}
+
+.success-icon,
+.failure-icon {
+  background: image-url('faithspark/success_icon.png');
+  display: inline-block;
+  height: 126px;
+  width: 126px;
+}
+
+.failure-icon {
+  background: image-url('faithspark/failure_icon.png');
+}

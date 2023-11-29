@@ -1,0 +1,6 @@
+= render 'shared/form_base_errors', f: f
+
+= attachment_file_field(f, :attachment, help: t('help.file_field', file_type: 'MP4, PNG, JPG', file_size: number_to_human_size(MediaItem::MAX_FILE_SIZE)).html_safe)
+
+= f.form_group label: { text: 'Visible in app' }, help: 'Show/hide this item from the app' do
+  = f.check_box :active

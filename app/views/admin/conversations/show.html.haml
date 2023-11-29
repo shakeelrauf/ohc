@@ -1,0 +1,48 @@
+- title_bar 'Conversation'
+
+.d-flex.flex-column.conversation--messages-viewport
+  .d-flex.align-items-center
+    .card.d-inline-flex
+      .card-body.d-flex
+        .conversation--avatar
+          = avatar_image(@conversation_users.values.first)
+        .conversation--text
+          %p
+            = @conversation_users.values.first.full_name
+
+    %span.mx-4
+      and
+
+    .card.d-inline-flex
+      .card-body.d-flex
+        .conversation--avatar
+          = avatar_image(@conversation_users.values.second)
+        .conversation--text
+          %p
+            = @conversation_users.values.second.full_name
+
+  .card.conversation--chat-window
+    .card-body
+      - MessageDecorator.decorate_collection(@messages, self).each do |message|
+        - sender = @conversation_users[message.sender['uid']]
+        - sender_index = @conversation_users.find_index { |k,| k === message.sender['uid'] }
+
+        .card.conversation--message{ id: "message-#{message.id}", class: "conversation--user__#{sender_index.zero? ? 'one' : 'two'}" }
+          .card-body.px-3.py-2
+            .row.align-items-start
+              .d-flex
+                .col.conversation--avatar
+                  = avatar_image(sender)
+                .col.conversation--text
+                  %strong
+                    = sender&.full_name
+
+              .col.conversation--message-body
+                .row
+                  .col-12
+                    = message.render_body
+
+                  .col-12
+                    %small= message.sent_at_time
+
+  %p.mb-0.mt-3 Note: Only the last 100 messages are shown.

@@ -1,0 +1,41 @@
+%p Voir le bas de la page pour les explications en français.
+
+%hr
+
+%p Hey!
+
+%p An account associated with your email address has forgotten their account details.
+
+- if @registered.any?
+  %p These are the registered users associated with your email:
+
+  %ul
+    - @registered.each do |data|
+      %li= "#{data[:label]} - #{link_to('Reset this user\'s Password', data[:link])}".html_safe
+
+- if @unregistered.any?
+  %p Unregistered Codes:
+
+  %ul
+    - @unregistered.each do |data|
+      %li= "#{data[:label]} - #{data[:code]}"
+
+%hr
+
+%p Attention!
+
+%p Un utilisateur du compte associé à votre adresse électronique a oublié les renseignements sur le compte.
+
+- if @registered.any?
+  %p Voici les utilisateurs inscrits et associés à votre adresse électronique:
+
+  %ul
+    - @registered.each do |data|
+      %li= "#{data[:label]} - #{link_to('Réinitialiser le mot de passe de l\'utilisateur', "#{data[:link]}&locale=fr")}".html_safe
+
+- if @unregistered.any?
+  %p Codes non inscrits:
+
+  %ul
+    - @unregistered.each do |data|
+      %li= "#{data[:label]} - #{data[:code]}"

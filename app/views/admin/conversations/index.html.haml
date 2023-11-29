@@ -1,0 +1,49 @@
+- title_bar 'Conversations'
+
+.row.ms-2.my-3
+  .col.conversation--text
+    %p
+      %strong From
+
+  .col.conversation--avatar
+  .col.conversation--text
+    %p
+      %strong To
+
+  .col.conversation--avatar
+  .col
+    %strong Last Message
+
+- @conversations.each do |conversation|
+  .card.mb-3.conversation{ id: "conversation-#{conversation.id}", data: { href: conversation_path(conversation.id) } }
+    .card-body
+      .row.align-items-start
+        .d-flex
+          .col.conversation--avatar
+            = avatar_image(conversation.user)
+          .col.conversation--text
+            %p
+              = conversation.user.full_name
+
+        .d-flex
+          .col.conversation--avatar
+            = avatar_image(conversation.conversation_with)
+          .col.conversation--text
+            %p
+              = conversation.conversation_with.full_name
+
+        .col.conversation--last-message
+          - last_message = MessageDecorator.decorate(conversation.last_message, self)
+
+          .row
+            .col-12
+              #{last_message.sender['name']}:
+            .col-12.my-1
+              = last_message.render_body
+
+            .col-12
+              %small= last_message.sent_at_time
+
+- if @conversations.none?
+  .card.mb-3
+    .card-body.text-center.disabled No Conversations

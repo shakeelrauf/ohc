@@ -1,0 +1,492 @@
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE `ohc_development` DEFAULT COLLATE `utf8mb4_unicode_520_ci`[0m
+  [1m[35m (2.2ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE DATABASE `ohc_development` DEFAULT COLLATE `utf8mb4_unicode_520_ci`[0m
+Started GET "/" for 192.168.10.1 at 2022-12-01 12:14:30 -0600
+Processing by Admin::HomeController#index as HTML
+  [1m[35m (2.0ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.9ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:44:30.479482') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+Redirected to http://192.168.10.129:3000/login
+Filter chain halted as :login_required rendered or redirected
+Completed 302 Found in 34ms (ActiveRecord: 10.8ms | Allocations: 9672)
+Started GET "/login" for 192.168.10.1 at 2022-12-01 12:14:30 -0600
+Processing by Admin::Users::SessionsController#new as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.7ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:44:30.497068') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Load (1.0ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:44:30.498839') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  Rendering admin/users/sessions/new.html.haml within layouts/faithspark
+  Rendered shared/_form_base_errors.html.haml (Duration: 1.7ms | Allocations: 1334)
+  Rendered admin/users/sessions/new.html.haml within layouts/faithspark (Duration: 43.0ms | Allocations: 19335)
+Started GET "/login" for 192.168.10.1 at 2022-12-01 12:14:35 -0600
+Processing by Admin::Users::SessionsController#new as HTML
+  [1m[35m (0.8ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.7ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:44:35.119178') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.5ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:44:35.125036') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  Rendering admin/users/sessions/new.html.haml within layouts/faithspark
+  Rendered shared/_form_base_errors.html.haml (Duration: 0.0ms | Allocations: 32)
+  Rendered admin/users/sessions/new.html.haml within layouts/faithspark (Duration: 1.6ms | Allocations: 1670)
+  Rendered shared/_flash.html.haml (Duration: 5.1ms | Allocations: 4374)
+Completed 200 OK in 25085ms (Views: 25041.4ms | ActiveRecord: 7.4ms | Allocations: 399568)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | Allocations: 11)
+Completed 200 OK in 20479ms (Views: 20471.1ms | ActiveRecord: 2.0ms | Allocations: 332169)
+Started GET "/assets/application-f0c10c97d65775b0ce40f6d706da6583cf68db1e314431ba4a9e261f3d54431f.js" for 192.168.10.1 at 2022-12-01 12:14:55 -0600
+Started GET "/assets/faithspark/application-4b7a5dc184200836b258724b2af6f2d3b0932122cee3705a9c07bae142b5d8b0.css" for 192.168.10.1 at 2022-12-01 12:14:55 -0600
+Started GET "/login" for 192.168.10.1 at 2022-12-01 12:16:21 -0600
+Processing by Admin::Users::SessionsController#new as HTML
+  [1m[35m (2.1ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.4ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:21.688746') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.5ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:21.691266') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  Rendering admin/users/sessions/new.html.haml within layouts/faithspark
+  Rendered shared/_form_base_errors.html.haml (Duration: 1.6ms | Allocations: 1335)
+  Rendered admin/users/sessions/new.html.haml within layouts/faithspark (Duration: 31.3ms | Allocations: 19427)
+  Rendered shared/_flash.html.haml (Duration: 49.9ms | Allocations: 4277)
+Completed 200 OK in 3009ms (Views: 2907.9ms | ActiveRecord: 13.2ms | Allocations: 134080)
+Started POST "/admin/users/sessions" for 192.168.10.1 at 2022-12-01 12:16:53 -0600
+Processing by Admin::Users::SessionsController#create as HTML
+  Parameters: {"user_admin"=>{"email"=>"don@onehopecanada.ca", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mAuthentication::Token::WebSession Load (0.6ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:53.476689') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.4ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:53.478574') AND `authentication_tokens`.`token` = 'W8DSXu7WxTz6KcF7qSF4' LIMIT 1[0m
+  [1m[36mUser::Admin Load (2.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`type` = 'User::Admin' AND `users`.`email` = 'don@onehopecanada.ca' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.6ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Load (1.2ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND `authentication_tokens`.`authentication_id` = 241 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Destroy (2.2ms)[0m  [1m[31mDELETE FROM `authentication_tokens` WHERE `authentication_tokens`.`id` = 3257[0m
+  [1m[36mAuthentication Update (0.4ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:16:53.732687' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token Load (0.9ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication::Token::WebSession Create (6.5ms)[0m  [1m[32mINSERT INTO `authentication_tokens` (`type`, `token`, `ip_address`, `user_agent`, `created_at`, `updated_at`, `authentication_id`) VALUES ('Authentication::Token::WebSession', 'Zz27GvXfA4Q4ceTT9EuL', '192.168.10.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', '2022-12-01 18:16:53.746531', '2022-12-01 18:16:53.746531', 241)[0m
+  [1m[36mAuthentication Update (0.6ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:16:53.754924' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://192.168.10.129:3000/
+Completed 302 Found in 282ms (ActiveRecord: 27.1ms | Allocations: 19556)
+Started GET "/" for 192.168.10.1 at 2022-12-01 12:16:53 -0600
+Processing by Admin::HomeController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.5ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:53.773049') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.3ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (0.7ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:16:53.778967' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.2ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:16:53.780567' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.9ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:16:53', `users`.`last_active_at` = '2022-12-01 18:16:53' WHERE `users`.`id` = 771[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://192.168.10.129:3000/admin/tenants
+Completed 302 Found in 19ms (ActiveRecord: 9.0ms | Allocations: 4103)
+Started GET "/admin/tenants" for 192.168.10.1 at 2022-12-01 12:16:53 -0600
+Processing by Admin::TenantsController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.5ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:46:53.808146') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.2ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (1.1ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:16:53.811761' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.3ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:16:53.813816' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.3ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:16:53', `users`.`last_active_at` = '2022-12-01 18:16:53' WHERE `users`.`id` = 771[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTenant Load (0.8ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` WHERE `tenants`.`id` = 1 LIMIT 1[0m
+Creating scope :open. Overwriting existing method Event.open.
+  Rendering admin/tenants/index.html.haml within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0) subquery_for_count[0m
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `tenants`[0m
+  [1m[36mTenant Load (0.7ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 14[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 1.8ms | Allocations: 2413)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 8[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 3[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  Rendered admin/tenants/index.html.haml within layouts/application (Duration: 55.5ms | Allocations: 40064)
+  Rendered shared/_header.html.haml (Duration: 3.4ms | Allocations: 6810)
+  Rendered shared/_nav_link.html.haml (Duration: 2.2ms | Allocations: 1034)
+  Rendered shared/_nav_link.html.haml (Duration: 0.2ms | Allocations: 63)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 3.6ms | Allocations: 1317)
+  Rendered shared/_nav_link.html.haml (Duration: 0.2ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.2ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.1ms | Allocations: 12)
+  Rendered shared/_tenant_admin_nav.html.haml (Duration: 16.5ms | Allocations: 5084)
+  Rendered shared/_sidebar.html.haml (Duration: 25.8ms | Allocations: 6493)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | Allocations: 15)
+  Rendered shared/_title.html.haml (Duration: 1.9ms | Allocations: 1550)
+Completed 200 OK in 170ms (Views: 81.5ms | ActiveRecord: 25.5ms | Allocations: 129976)
+Started GET "/assets/application-a998892dd1d96c854d52906349aae011b1c67bccf95ff4b2980fd26dec5320de.css" for 192.168.10.1 at 2022-12-01 12:16:54 -0600
+Started GET "/admin/tenants" for 192.168.10.1 at 2022-12-01 12:17:13 -0600
+Processing by Admin::TenantsController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.8ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:47:13.750311') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.3ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (0.6ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:17:13.754069' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.2ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:17:13.755493' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (1.4ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:17:13', `users`.`last_active_at` = '2022-12-01 18:17:13' WHERE `users`.`id` = 771[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTenant Load (0.4ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` WHERE `tenants`.`id` = 1 LIMIT 1[0m
+  Rendering admin/tenants/index.html.haml within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0) subquery_for_count[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `tenants`[0m
+  [1m[36mTenant Load (0.4ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 14[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 35)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 8[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 2[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 3[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  Rendered admin/tenants/index.html.haml within layouts/application (Duration: 39.5ms | Allocations: 17381)
+  Rendered shared/_header.html.haml (Duration: 0.8ms | Allocations: 363)
+  Rendered shared/_nav_link.html.haml (Duration: 0.5ms | Allocations: 78)
+  Rendered shared/_nav_link.html.haml (Duration: 0.5ms | Allocations: 63)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.1ms | Allocations: 18)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.2ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 12)
+  Rendered shared/_tenant_admin_nav.html.haml (Duration: 15.2ms | Allocations: 1066)
+  Rendered shared/_sidebar.html.haml (Duration: 15.3ms | Allocations: 1138)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | Allocations: 15)
+  Rendered shared/_title.html.haml (Duration: 0.0ms | Allocations: 25)
+Completed 200 OK in 89ms (Views: 58.5ms | ActiveRecord: 21.4ms | Allocations: 32862)
+Started GET "/admin/color_themes" for 192.168.10.1 at 2022-12-01 12:17:15 -0600
+Processing by Admin::ColorThemesController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.7ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:47:15.307001') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.4ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (0.7ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:17:15.311333' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.3ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:17:15.313325' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.5ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:17:15', `users`.`last_active_at` = '2022-12-01 18:17:15' WHERE `users`.`id` = 771[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTenant Load (0.3ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` WHERE `tenants`.`id` = 1 LIMIT 1[0m
+  Rendering admin/color_themes/index.html.haml within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM `color_themes` ORDER BY `color_themes`.`name` ASC LIMIT 25 OFFSET 0) subquery_for_count[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `color_themes`[0m
+  [1m[36mColorTheme Load (0.4ms)[0m  [1m[34mSELECT `color_themes`.* FROM `color_themes` ORDER BY `color_themes`.`name` ASC LIMIT 25 OFFSET 0[0m
+  Rendered admin/color_themes/_preview.html.haml (Duration: 5.5ms | Allocations: 2906)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.5ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.5ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.4ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.4ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.4ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.4ms | Allocations: 504)
+  Rendered admin/color_themes/_preview.html.haml (Duration: 0.4ms | Allocations: 504)
+  Rendered admin/color_themes/index.html.haml within layouts/application (Duration: 28.1ms | Allocations: 17905)
+  Rendered shared/_header.html.haml (Duration: 1.0ms | Allocations: 393)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 77)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 18)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 12)
+  Rendered shared/_tenant_admin_nav.html.haml (Duration: 4.3ms | Allocations: 1072)
+  Rendered shared/_sidebar.html.haml (Duration: 4.4ms | Allocations: 1144)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | Allocations: 15)
+  Rendered shared/_title.html.haml (Duration: 0.0ms | Allocations: 25)
+Completed 200 OK in 71ms (Views: 47.4ms | ActiveRecord: 13.9ms | Allocations: 34634)
+Started GET "/assets/my_camp_theme_preview-47c6b94c7cded27c2edcb7d0b0f5330286312567e6dfe1ca2daaaf60caa05d7a.png" for 192.168.10.1 at 2022-12-01 12:17:15 -0600
+Started GET "/assets/faith_spark_theme_preview-fb526eb1a5f694d2bd7e121be515a9786a4d834974b687b398547b4e62c12155.png" for 192.168.10.1 at 2022-12-01 12:17:15 -0600
+Started GET "/admin/tenants" for 192.168.10.1 at 2022-12-01 12:17:16 -0600
+Processing by Admin::TenantsController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.4ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:47:16.538724') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.2ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (2.2ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:17:16.541027' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.5ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:17:16.543899' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (1.2ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:17:16', `users`.`last_active_at` = '2022-12-01 18:17:16' WHERE `users`.`id` = 771[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTenant Load (0.4ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` WHERE `tenants`.`id` = 1 LIMIT 1[0m
+  Rendering admin/tenants/index.html.haml within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0) subquery_for_count[0m
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `tenants`[0m
+  [1m[36mTenant Load (0.3ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 14[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 35)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 8[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 3[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  Rendered admin/tenants/index.html.haml within layouts/application (Duration: 44.2ms | Allocations: 17386)
+  Rendered shared/_header.html.haml (Duration: 1.0ms | Allocations: 363)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 78)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 18)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 12)
+  Rendered shared/_tenant_admin_nav.html.haml (Duration: 2.1ms | Allocations: 1065)
+  Rendered shared/_sidebar.html.haml (Duration: 2.3ms | Allocations: 1137)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | Allocations: 15)
+  Rendered shared/_title.html.haml (Duration: 0.0ms | Allocations: 25)
+Completed 200 OK in 88ms (Views: 49.3ms | ActiveRecord: 28.9ms | Allocations: 32862)
+Started GET "/login" for 192.168.10.1 at 2022-12-01 12:29:23 -0600
+Processing by Admin::Users::SessionsController#new as HTML
+  [1m[35m (1.1ms)[0m  [1m[35mSET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mAuthentication::Token::WebSession Load (0.6ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:59:23.415826') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.5ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (0.9ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:29:23.425910' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.2ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:29:23.427766' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.5ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:29:23', `users`.`last_active_at` = '2022-12-01 18:29:23' WHERE `users`.`id` = 771[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://192.168.10.129:3000/
+Filter chain halted as :redirect_if_logged_in rendered or redirected
+Completed 302 Found in 20ms (ActiveRecord: 7.2ms | Allocations: 2416)
+Started GET "/" for 192.168.10.1 at 2022-12-01 12:29:23 -0600
+Processing by Admin::HomeController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.6ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:59:23.442169') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.3ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (1.1ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:29:23.447806' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (2.5ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:29:23.449733' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.6ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:29:23', `users`.`last_active_at` = '2022-12-01 18:29:23' WHERE `users`.`id` = 771[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://192.168.10.129:3000/admin/tenants
+Completed 302 Found in 26ms (ActiveRecord: 18.2ms | Allocations: 2152)
+Started GET "/admin/tenants" for 192.168.10.1 at 2022-12-01 12:29:23 -0600
+Processing by Admin::TenantsController#index as HTML
+  [1m[36mAuthentication::Token::WebSession Load (0.5ms)[0m  [1m[34mSELECT `authentication_tokens`.* FROM `authentication_tokens` WHERE `authentication_tokens`.`type` = 'Authentication::Token::WebSession' AND (updated_at > '2022-12-01 17:59:23.474291') AND `authentication_tokens`.`token` = 'Zz27GvXfA4Q4ceTT9EuL' LIMIT 1[0m
+  [1m[36mAuthentication Load (0.3ms)[0m  [1m[34mSELECT `authentications`.* FROM `authentications` WHERE `authentications`.`id` = 241 LIMIT 1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`authentication_id` = 241 AND `users`.`id` = 771 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAuthentication::Token::WebSession Update (0.5ms)[0m  [1m[33mUPDATE `authentication_tokens` SET `authentication_tokens`.`updated_at` = '2022-12-01 18:29:23.477535' WHERE `authentication_tokens`.`id` = 3258[0m
+  [1m[36mAuthentication Update (0.2ms)[0m  [1m[33mUPDATE `authentications` SET `authentications`.`updated_at` = '2022-12-01 18:29:23.478723' WHERE `authentications`.`id` = 241[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser::Admin Update (0.2ms)[0m  [1m[33mUPDATE `users` SET `users`.`updated_at` = '2022-12-01 18:29:23', `users`.`last_active_at` = '2022-12-01 18:29:23' WHERE `users`.`id` = 771[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTenant Load (0.4ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` WHERE `tenants`.`id` = 1 LIMIT 1[0m
+  Rendering admin/tenants/index.html.haml within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0) subquery_for_count[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `tenants`[0m
+  [1m[36mTenant Load (0.3ms)[0m  [1m[34mSELECT `tenants`.* FROM `tenants` ORDER BY `tenants`.`name` ASC LIMIT 25 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 14[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 14[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (238, 239, 240, 241, 242, 243)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 14 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 35)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 8[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 8[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (234, 235, 236, 249, 251, 252, 258, 259, 265, 266, 267, 268, 270, 272, 273, 275, 277, 279)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 8 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 1[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (1, 11, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68, 70, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 102, 103, 105, 107, 108, 109, 110, 111, 112, 113, 114, 117, 120, 121, 122, 123, 124, 125, 127, 128, 129, 132, 133, 134, 135, 136, 137, 140, 142, 144, 145, 146, 147, 149, 150, 151, 152, 153, 157, 158, 159, 161, 162, 164, 165, 166, 167, 186, 187, 188, 189, 190, 193, 209, 210, 213, 214, 215, 216, 217, 221, 223, 228, 231, 232, 237, 245, 247, 254, 257, 261, 262, 263, 264)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 1 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 2[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 2[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE 1=0[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 2 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.1ms | Allocations: 28)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` WHERE `users`.`tenant_id` = 3[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `events`.`id` FROM `events` WHERE `events`.`tenant_id` = 3[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `streams` WHERE `streams`.`event_id` IN (196, 197, 198, 199, 200, 201, 203, 204, 205, 206, 244)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT SUM(TIMESTAMPDIFF(SECOND, started_at, ended_at)) FROM `events` WHERE `events`.`tenant_id` = 3 AND `events`.`status` = 'finished' AND (started_at > '2022-12-01 06:00:00')[0m
+  Rendered shared/_more_button.html.haml (Duration: 0.0ms | Allocations: 28)
+  Rendered admin/tenants/index.html.haml within layouts/application (Duration: 39.7ms | Allocations: 17380)
+  Rendered shared/_header.html.haml (Duration: 0.3ms | Allocations: 363)
+  Rendered shared/_nav_link.html.haml (Duration: 0.1ms | Allocations: 78)
+  Rendered shared/_nav_link.html.haml (Duration: 0.0ms | Allocations: 63)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 18)
+  Rendered shared/_nav_link.html.haml (Duration: 0.0ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.0ms | Allocations: 63)
+  Rendered shared/_nav_link.html.haml (Duration: 0.0ms | Allocations: 64)
+  Rendered shared/_sidebar_sublist.html.haml (Duration: 0.0ms | Allocations: 12)
+  Rendered shared/_tenant_admin_nav.html.haml (Duration: 0.8ms | Allocations: 1065)
+  Rendered shared/_sidebar.html.haml (Duration: 0.8ms | Allocations: 1137)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | Allocations: 15)
+  Rendered shared/_title.html.haml (Duration: 0.0ms | Allocations: 25)
+Completed 200 OK in 64ms (Views: 39.4ms | ActiveRecord: 17.5ms | Allocations: 32674)

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>API::V2::CamperQuestionsController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="API::V2::CamperQuestionsController">
+
+  
+
+    <meta name="keywords" content="API::V2::CamperQuestionsController class">
+  
+    <meta name="keywords" content="index, create, unread">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            API::V2::CamperQuestionsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="BaseController.html">API::V2::BaseController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/app/controllers/api/v2/camper_questions_controller_rb.html">app/controllers/api/v2/camper_questions_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <main id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-unread">unread</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../../../classes/API/V2/CamperQuestionsController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-create-label-5BPOST-5D+-2Fapi-2Fv2-2Fcamper_questions.json">[POST] /api/v2/camper_questions.json</h2>
+
+<p>Create a question</p>
+
+<h4 id="method-i-create-label-Required">Required</h4>
+<ul><li>
+<p>text - the question to be asked</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/camper_questions_controller.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-identifier">camper_question</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">camper_questions</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">allowed_params_with_tenant</span>)
+  <span class="ruby-identifier">camper_question</span>.<span class="ruby-identifier">attendance</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">attendances</span>.<span class="ruby-identifier">last</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Interactions</span><span class="ruby-operator">::</span><span class="ruby-constant">CamperQuestions</span><span class="ruby-operator">::</span><span class="ruby-constant">Creation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">camper_question</span>).<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">CamperQuestionSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">camper_question</span>, <span class="ruby-identifier">serializer_params</span>), <span class="ruby-value">status:</span> <span class="ruby-value">:created</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render_object_error</span> <span class="ruby-value">object:</span> <span class="ruby-identifier">camper_question</span>, <span class="ruby-value">serializer:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">CamperQuestionSerializer</span>, <span class="ruby-value">status:</span> <span class="ruby-value">:unprocessable_entity</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../../../classes/API/V2/CamperQuestionsController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-index-label-5BGET-5D+-2Fapi-2Fv2-2Fcamper_questions.json">[GET] /api/v2/camper_questions.json</h2>
+
+<p>Retrieve an index of questions for a user</p>
+
+<h4 id="method-i-index-label-Returns">Returns</h4>
+<ul><li>
+<p>200 - success - returns the questions</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/camper_questions_controller.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-identifier">camper_questions</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">camper_questions</span>
+
+  <span class="ruby-identifier">camper_questions</span>.<span class="ruby-identifier">answered</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-value">read:</span> <span class="ruby-keyword">true</span>)
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">CamperQuestionSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">camper_questions</span>, <span class="ruby-identifier">serializer_params</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unread">
+            
+              <b>unread</b>()
+            
+            <a href="../../../classes/API/V2/CamperQuestionsController.html#method-i-unread" name="method-i-unread" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-unread-label-5BGET-5D+-2Fapi-2Fv2-2Fcamper_questions-2Funread.json">[GET] /api/v2/camper_questions/unread.json</h2>
+
+<p>Check if the current user has any answered unread camper questions</p>
+
+<h4 id="method-i-unread-label-Returns">Returns</h4>
+<ul><li>
+<p>200 - User has some answered unread questions</p>
+</li><li>
+<p>204 - User has no answered unread questions</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-unread_source')" id="l_method-i-unread_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-unread_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/camper_questions_controller.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unread</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">camper_questions</span>.<span class="ruby-identifier">answered</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">read:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">exists?</span>
+    <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </main>
+  </body>
+</html>

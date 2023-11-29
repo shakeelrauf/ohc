@@ -1,0 +1,16 @@
+- title_bar "Import #{model_name(User::Child, plural: true)}"
+
+.mb-4
+  %h2 Step One
+  %p
+    Please ensure that any #{model_name(Cabin, plural: true).downcase} referenced in your spreadsheet file
+    %strong already exist
+    as part of this #{model_name(Camp).downcase}. #{model_name(Cabin)} names are case-sensitive ('Red' is different to 'red').
+
+.mb-4
+  %h2 Step Two
+  %p Add a CSV file for import. A template CSV file has been provided to show the format required.
+
+  = link_to 'Download Template CSV file', template_csv_camp_imports_path(@camp)
+
+= render 'shared/imports/form', import: @import, url: camp_imports_path(@camp)

@@ -1,0 +1,32 @@
+= render 'shared/form_base_errors', f: f
+
+.row
+  .col-12.col-md-8
+    = f.text_field :name
+    = f.select :app_layout, ColorTheme::APP_LAYOUTS.collect { |ct| [ct.camelize, ct] }
+    = f.color_field :primary_color
+    = f.color_field :secondary_color
+
+  .col-12.col-md-4
+    = f.form_group label: { text: 'Preview' } do
+      = render 'admin/color_themes/preview', color_theme: f.object
+
+:javascript
+  document.addEventListener('turbolinks:load', () => {
+    $('#color_theme_app_layout').on('change', function() {
+      let appLayout = $('#color_theme_app_layout').val();
+      let $overlays = $('.color-theme-preview img');
+      let $selectedOverlay = $(`.color-theme-preview img.${appLayout}`);
+
+      $overlays.addClass('d-none');
+      $selectedOverlay.removeClass('d-none');
+    });
+
+    $('#color_theme_primary_color, #color_theme_secondary_color').on('change', function() {
+      let primaryColor = $('#color_theme_primary_color').val();
+      let secondaryColor = $('#color_theme_secondary_color').val();
+      let $preview = $('.color-theme-preview');
+
+      $preview.attr('style', `background: linear-gradient(${primaryColor}, ${secondaryColor});`);
+    });
+  });

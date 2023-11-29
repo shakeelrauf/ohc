@@ -1,0 +1,6 @@
+en:
+  push_notifications:
+    event:
+      title: 'A Faith Spark Heads-Up!'
+      starting: The %{name} event is about to start.
+      reminder: The %{name} event is on %{day} at %{time} Central.

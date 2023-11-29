@@ -1,0 +1,4 @@
+en:
+  help:
+    datetime_field: 'In your <a href="%{link}">current time zone</a> (%{zone})'
+    file_field: 'Format: %{file_type}<br />Max Size: %{file_size}'

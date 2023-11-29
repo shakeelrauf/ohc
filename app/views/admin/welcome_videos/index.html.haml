@@ -1,0 +1,41 @@
+- title_bar model_name(WelcomeVideo, plural: true) do
+  = new_button(new_button_label(WelcomeVideo), new_welcome_video_path)
+
+.row.mb-3.align-items-center
+  .col-12.col-md-8
+    = page_entries_info @welcome_videos, entry_name: entry_name_label(WelcomeVideo)
+
+  .col-12.col-md-4
+    = search_form_for @search, url: welcome_videos_path do |s|
+      .input-group
+        = s.search_field :name_cont, placeholder: 'Search (Name)', class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @welcome_videos
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Thumbnail
+        %th= sort_link(@search, :name)
+        %th= sort_link(@search, :updated_at, text: 'Updated')
+        %th= sort_link(@search, :active)
+        %th.actions Action
+
+    %tbody
+      - @welcome_videos.each do |welcome_video|
+        %tr{ id: dom_id(welcome_video), class: ('disabled' unless welcome_video.active?) }
+          %td
+            .preview.img-thumbnail
+              - if welcome_video.video.previewable?
+                = image_tag(welcome_video.video.preview(resize_to_limit: [50, 50]), title: welcome_video.video.filename)
+
+          %td= welcome_video.name
+          %td= welcome_video.updated_at
+          %td= welcome_video.active? ? 'Visible' : 'Hidden'
+          %td.actions
+            = edit_button(edit_welcome_video_path(welcome_video))
+
+= paginate @welcome_videos

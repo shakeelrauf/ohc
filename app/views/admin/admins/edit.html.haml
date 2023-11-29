@@ -1,0 +1,8 @@
+- title_bar "Edit #{@admin.full_name}" do
+  = delete_button(admin_path(@admin), text: "Delete #{@admin.full_name}", remote: false, disabled: !@admin.can_be_deleted?)
+
+= bootstrap_form_with model: @admin, url: admin_path(@admin), local: true do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(User::Admin), class: 'btn btn-success'

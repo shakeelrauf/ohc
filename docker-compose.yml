@@ -1,0 +1,258 @@
+version: '3.1'
+
+# NOTE: YAML inheritance is NOT recursive, so inheriting from a top-level service definition and then
+#       re-defining a top-level attribute _overrides it completely_ rather than merging in the new values.
+#
+#       It also works with hashes only (not arrays).
+#
+# NOTE: Default ENV Var values are set in .env, but can be overridden on the command line or by ENV vars in
+#       in the shell session.
+services:
+
+  # Abstract services - not intended to be invoked directly, but inherited from by other services.
+  # These must be defined first in order for the YAML anchors to work.
+  ############################################################################################################
+
+  # Abstract database service - not actually intended to be run, but inherited from
+  abstract-db: &abstract_db
+    image: mysql/mysql-server:5.7
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_520_ci']
+
+  # Abstract service all other Rails development services inherit from
+  abstract-env: &abstract_env
+    image: ${DOCKER_IMAGE}
+    # We need tty to get the Rails server's logs (which are being output to StdOut)
+    tty: true
+    # Mount the current directory as the app's source files (overriding/hiding the container source files)
+    # and mount volumes where we expect a lot of I/O to occur that we don't want saved to the host filesystem
+    volumes:
+      - .:/home/app/webapp:cached
+      - rails_cache:/home/app/webapp/tmp/cache
+      - node_modules:/home/app/webapp/node_modules
+      - packs:/home/app/webapp/public/packs
+      - tmp:/tmp
+      - /run/host-services/ssh-auth.sock:/ssh-auth.sock
+
+    environment: &abstract_env_vars
+      BOOTSNAP_CACHE_DIR: /home/app/webapp/.bundle/_bootsnap
+      HISTFILE: /home/app/webapp/log/.bash_history
+      SSH_AUTH_SOCK: /ssh-auth.sock
+      REDIS_URL: redis://redis_server:6379
+    links:
+      - db-server
+
+  # Concrete services - invoke with `docker-compose up <service-name>` for background or daemon services and
+  # `docker-compose run <service-name>` for services you wish to interact with
+  ############################################################################################################
+
+  # Database
+
+  # Development database server. Usually you will just start this service as a dependency of one of the other
+  # ones.
+  db-server: &dev_db
+    <<: *abstract_db
+    environment:
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    volumes:
+      - dev_db_logs:/var/log
+      - dev_db:/var/lib/mysql
+
+  # Development database client (this is the one you want to run any database commands or import a database dump)
+  # Run as `docker-compose run db-console`
+  db-console:
+    <<: *dev_db
+    # We need StdIn to be connected in order to pipe in database dumps
+    tty: true
+    # We need to use sh -c here to get the environment variables to interpolate in the container's shell
+    # rather than in the docker-compose file. (i.e. We want the values defined in the docker-compose file and
+    # NOT values defined as env vars when calling docker-compose)
+    command: ["sh", "-c", "mysql -u $${MYSQL_USER} -p$${MYSQL_PASSWORD} -h db-server $${MYSQL_DATABASE}"]
+    links:
+      - db-server
+
+  # Application
+
+  # Starts the rails server and mounts on port 3000
+  app: &app
+    <<: *abstract_env
+    command: docker/wait-for-it.sh db-server:3306 -t 120 -- bundle exec rails s -p 3000 -b 0.0.0.0
+    environment:
+      <<: *abstract_env_vars
+      DATABASE_HOST: db-server
+    ports:
+      - 3000:3000
+    links:
+      - db-server
+      - sidekiq
+
+  # Starts the application without mounting any volumes to reveal how the application will perform in
+  # production with just the behaviour encoded by the Dockerfile + config to point at the development database
+  app-without-dev-volumes:
+    <<: *app
+    volumes: []
+
+  # Consoles - use `docker-compose run <service-name>`
+
+  # Opens a bash console suitable for running commands that affect the development environment
+  console: &dev_env
+    <<: *abstract_env
+    command: docker/wait-for-it.sh db-server:3306 -t 120 -- /bin/bash
+    environment:
+      <<: *abstract_env_vars
+      DATABASE_HOST: db-server
+
+  # Opens a rails console for the development environment
+  rails-console:
+    <<: *dev_env
+    command: docker/wait-for-it.sh db-server:3306 -t 120 -- bundle exec rails c
+
+  # Sidekiq process and redis server
+  sidekiq:
+    <<: *abstract_env
+    command: ./bin/bundle exec sidekiq -C config/sidekiq.yml
+    environment:
+      <<: *abstract_env_vars
+      DATABASE_HOST: db-server
+      REDIS_URL: redis://redis_server:6379
+      HOST_URL: http://app:3000
+    links:
+      - redis_server
+      - db-server
+
+  redis_server:
+    image: redis:4.0.1
+
+  # Doc servers
+
+  # Starts the slate API document server
+  api-docs:
+    image: slatedocs/slate:latest
+    volumes:
+      - ./api_docs/index.html.md:/srv/slate/source/index.html.md:cached
+      - ./api_docs/stylesheets/_variables.scss:/srv/slate/source/stylesheets/_variables.scss:cached
+      - ./api_docs/javascripts/all.js:/srv/slate/source/javascripts/all.js:cached
+      - ./api_docs/includes:/srv/slate/source/includes:cached
+      - ./app/assets/images/logo.png:/srv/slate/source/images/logo.png:cached
+    command: serve
+    ports:
+      - 4567:4567
+
+  # Starts the Yard document server with live reload
+  ruby-docs:
+    <<: *abstract_env
+    command: bundle exec yard server -r
+    volumes:
+      - .:/home/app/webapp:cached
+      - yardoc:/home/app/webapp/.yardoc
+    ports:
+      - 8808:8808
+
+  # Tests
+
+  # Test database server, for running the test suite against
+  test-db-server: &test_db
+    <<: *abstract_db
+    environment:
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_DATABASE: ${TEST_DATABASE_NAME}
+    volumes:
+      - test_db_logs:/var/log
+      - test_db:/var/lib/mysql
+
+  # Test database client
+  test-db-console:
+    <<: *test_db
+    # We need StdIn to be connected in order to pipe in database dumps
+    tty: true
+    # We need to use sh -c here to get the environment variables to interpolate in the container's shell
+    # rather than in the docker-compose file. (i.e. We want the values defined in the docker-compose file and
+    # NOT values defined as env vars when calling docker-compose)
+    command: [ "sh", "-c", "mysql -u $${MYSQL_USER} -p$${MYSQL_PASSWORD} -h test-db-server $${MYSQL_DATABASE}" ]
+    links:
+      - test-db-server
+
+  # Opens a bash console suitable for running commands that affect the test environment
+  abstract-test-env: &abstract_test_env
+    <<: *abstract_env
+    environment:
+      <<: *abstract_env_vars
+      RAILS_ENV: test
+      DATABASE_HOST: test-db-server
+      DATABASE_NAME: ${TEST_DATABASE_NAME}
+      SELENIUM_HUB_URL: http://chrome:4444/wd/hub
+    links:
+      - test-db-server
+      - chrome-with-vnc:chrome
+
+  test-console:
+    <<: *abstract_test_env
+    command: docker/wait-for-it.sh test-db-server:3306 -t 120 -- /bin/bash
+
+  # Runs the application's test suite
+  tests: &tests
+    <<: *abstract_test_env
+    command: docker/wait-for-it.sh test-db-server:3306 -t 120 -- bundle exec rspec
+
+  # Runs the application's test suite
+  tests-without-vnc:
+    <<: *tests
+    links:
+      - test-db-server
+      - chrome-without-vnc:chrome
+
+  # Runs the application's test suite without any volumes (required for bitbucket pipelines)
+  tests-without-volumes:
+    <<: *tests
+    volumes:
+      - .:/home/app/webapp:cached
+
+  # Runs only the specs that failed in the last testsuite execution
+  tests-only-failures:
+    <<: *abstract_test_env
+    command: docker/wait-for-it.sh test-db-server:3306 -t 120 -- bundle exec rspec --only-failures
+
+  # Watches the file system for changes and automatically runs the corresponding specs
+  tests-watch:
+    <<: *abstract_test_env
+    stdin_open: true
+    command: docker/wait-for-it.sh test-db-server:3306 -t 120 -- bundle exec guard -P rspec -c -w app config lib public spec
+
+  # Watches the file system for changes and automatically runs the spec file that was most recently changed
+  tests-watch-debug:
+    <<: *abstract_test_env
+    stdin_open: true
+    command: docker/wait-for-it.sh test-db-server:3306 -t 120 -- bundle exec guard -P rspec -c -G Guardfile.debug -w app config lib public spec
+
+  # Selenium standalone service for running the Selenium tests (i.e system specs with js: true).
+  # Not intended to be invoked directly, but can be screen-shared with using VNC (See Readme for details).
+  chrome-without-vnc:
+    image: selenium/standalone-chrome:3.141.0-actinium # this version should match that of the selenium-webdriver gem (see Gemfile)
+    shm_size: '2gb'
+    volumes:
+      - .:/home/app/webapp:cached
+      - tmp:/tmp
+
+  chrome-with-vnc:
+    image: selenium/standalone-chrome-debug:3.141.0-actinium # this version should match that of the selenium-webdriver gem (see Gemfile)
+    shm_size: '2gb'
+    volumes:
+      - .:/home/app/webapp:cached
+      - tmp:/tmp
+    ports:
+      - 5900:5900
+
+volumes:
+  dev_db:
+  dev_db_logs:
+  node_modules:
+  packs:
+  rails_cache:
+  test_db:
+  test_db_logs:
+  tmp:
+  yardoc:

@@ -1,0 +1,4 @@
+First Name,Last Name,Date of Birth (YYYY-MM-DD),Gender,Parent Email,Cabin/Small Group
+Emma,Tremblay,2010-06-03,female,emma.parent@test.com,Red Team
+Harry,Smith,2010-06-04,male,harry.parent@test.com,Blue Team
+,,,,admin.example@test.com,Blue Team

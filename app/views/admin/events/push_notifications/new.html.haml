@@ -1,0 +1,7 @@
+- title_bar "New Event Notification"
+
+= bootstrap_form_with model: @push_notification, url: event_push_notifications_path(@event, event_type: params[:event_type]), local: true do |notification_form|
+  = render 'form', notification_form: notification_form
+
+  = notification_form.form_group do
+    = notification_form.submit 'Send Notification', class: 'btn btn-success'

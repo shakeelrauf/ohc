@@ -1,0 +1,39 @@
+- title_bar "Import #{model_name(User::Child, plural: true)}"
+
+- if @import.errored?
+  %h3 Import Failed. No database changes have been made.
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Error
+
+    %tbody
+      %tr
+        %td.whitespace-wrap= @import.error
+
+  :javascript
+    if (window.reloadTimer) clearTimeout(window.reloadTimer);
+
+- elsif @import.successful?
+  %h3 Import Successful.
+
+  :javascript
+    if (window.reloadTimer) clearTimeout(window.reloadTimer);
+
+- else
+  %h3= @import.status.titleize
+
+  - if @import.processing?
+    %progress{ value: @import.percent_completion, max: '100' }
+
+  :javascript
+    if (!window.reloadTimer) {
+      const SECONDS = 2;
+
+      window.reloadTimer = setTimeout(function () {
+        window.reloadTimer = undefined;
+
+        Turbolinks.visit(location, { action: 'replace' });
+      }, SECONDS * 1000);
+    }

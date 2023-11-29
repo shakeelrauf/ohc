@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.10.3"
+  }
+}

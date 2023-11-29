@@ -1,0 +1,45 @@
+- title_bar model_name(CamperQuestion, plural: true) do
+  - if @showing_answered
+    = action_button(icon('list'), 'Unanswered', camper_questions_path)
+  - else
+    = action_button(icon('list'), 'Answered', camper_questions_path(answered: true))
+
+%p= page_entries_info @camper_questions, entry_name: "#{@showing_answered ? 'answered' : 'unanswered'} #{entry_name_label(CamperQuestion)}"
+
+= paginate @camper_questions
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Question
+        %th Asked By
+        %th Sent At
+        %th Last Attendance
+        - if @showing_answered
+          %th Reply
+          %th Answerer
+          %th Answered At
+          %th Seen by #{model_name(User::Child).downcase}
+        - else
+          %th.actions Action
+
+    %tbody
+      - @camper_questions.each do |camper_question|
+        %tr{ id: dom_id(camper_question) }
+          %td.text-wrap= camper_question.text
+          %td= camper_question.child&.full_name
+          %td= formatted_date(camper_question.created_at)
+          %td= render 'camp', camp: camper_question.attendance&.camp
+
+          - if @showing_answered
+            %td.text-wrap= camper_question.reply
+            %td= camper_question.admin&.full_name
+            %td= l(camper_question.updated_at, format: :long)
+            %td= camper_question.read? ? 'Yes' : 'No'
+          - else
+            %td.actions
+              - if can?(:edit, camper_question)
+                = edit_button([:edit, camper_question], text: 'Reply')
+
+= paginate @camper_questions

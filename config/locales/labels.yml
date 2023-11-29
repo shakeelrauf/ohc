@@ -1,0 +1,14 @@
+en:
+  labels:
+    no_items: 'No %{name}'
+    new_button: 'New %{name}'
+    create_button: 'Create %{name}'
+    edit_button: 'Edit %{name}'
+    update_button: 'Update %{name}'
+    merge_button: 'Merge %{name}'
+  help:
+    camp_locations:
+      notification_email: 'This email will receive notifications of new %{model}.<br />Use a comma to separate multiple email addresses.'
+    merge:
+      source_id: 'This user will be deleted after the merge.'
+      destination_id: 'All the source users data will be transferred to this user.'

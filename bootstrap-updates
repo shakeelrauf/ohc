@@ -1,0 +1,38 @@
+models/import.rb:  validates :csv_file, attached: true, content_type: %w[text/csv application/csv application/vnd.ms-excel]
+views/shared/_header.html.haml:%nav.navbar.navbar-expand-lg.navbar-dark.shadow.navbar-ohc.flex-lg-row.align-items-lg-center
+views/layouts/application.html.haml:        %main.ms-auto.px-4.pb-3{ role: 'main', class: logged_in? ? 'col-lg-10' : 'col-xs-12 col-md-6 mr-auto' }
+views/layouts/faithspark.html.haml:      .row.align-items-center.h-100
+views/layouts/faithspark.html.haml:        %main.col-xs-12.col-md-6.mr-auto.ms-auto
+views/admin/welcome_videos/index.html.haml:.row.mb-3.align-items-center
+views/admin/conversations/index.html.haml:.row.ms-2.my-3
+views/admin/conversations/index.html.haml:      .row.align-items-start
+views/admin/conversations/show.html.haml:  .d-flex.align-items-center
+views/admin/conversations/show.html.haml:            .row.align-items-start
+views/admin/themes/index.html.haml:.row.mb-3.align-items-center
+views/admin/themes/show.html.haml:.row.mb-3.align-items-center
+views/admin/camp_locations/index.html.haml:.row.mb-3.align-items-center
+views/admin/camp_locations/show.html.haml:.row.mb-3.align-items-center
+views/admin/children/index.html.haml:.row.mb-3.align-items-center
+views/admin/tenants/index.html.haml:      .row.align-items-center.mb-0
+views/admin/tenants/index.html.haml:          .row.align-items-center
+views/admin/tenants/index.html.haml:          .row.align-items-center
+views/admin/tenants/index.html.haml:          .row.align-items-center
+views/admin/media_items/new.html.haml:      .row.align-items-center
+views/admin/admins/index.html.haml:.row.mb-3.align-items-center
+views/admin/events/index.html.haml:    .row.align-items-center
+views/admin/events/index.html.haml:    .row.align-items-center
+views/layouts/application.html.haml:        %main.ms-auto.px-4.pb-3{ role: 'main', class: logged_in? ? 'col-lg-10' : 'col-xs-12 col-md-6 mr-auto' }
+views/layouts/faithspark.html.haml:        %main.col-xs-12.col-md-6.mr-auto.ms-auto
+views/admin/themes/_answer_fields.html.haml:  .card-header.text-right.p-0.pr-2
+views/admin/themes/_quiz_question_fields.html.haml:  .card-header.text-right.p-0.pr-2
+views/admin/attendances/_attendance_fields.html.haml:  .card-header.text-right.p-0.pr-2
+views/admin/themes/index.html.haml:        .col-12.col-md-1.text-right
+views/admin/themes/_answer_fields.html.haml:  .card-header.text-right.p-0.pe-2
+views/admin/themes/_quiz_question_fields.html.haml:  .card-header.text-right.p-0.pr-2
+views/admin/camp_locations/index.html.haml:        .col-2.text-right
+views/admin/camp_locations/show.html.haml:        .col-2.text-right
+views/admin/camp_locations/show.html.haml:              .col-2.text-right
+views/admin/camp_locations/show.html.haml:            %p.text-right
+views/admin/camp_locations/show.html.haml:                    .col-12.col-md-3.text-right
+views/admin/tenants/index.html.haml:        .col-12.col-sm-1.text-right
+views/admin/attendances/_attendance_fields.html.haml:  .card-header.text-right.p-0.pr-2

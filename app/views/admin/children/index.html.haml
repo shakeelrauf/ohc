@@ -1,0 +1,51 @@
+- title = "#{model_name(User::Child, plural: true)}#{" for #{@camp_location.name}" if @camp_location.present?}"
+
+- title_bar title do
+  - if can?(:create, @new_child)
+    = new_button(new_button_label(User::Child), new_child_path)
+
+  - if can?(:merge, @new_child)
+    = merge_button(merge_button_label(User::Child), new_users_merge_path)
+
+.row.mb-3.align-items-center
+  .col-12.col-md-4
+    = page_entries_info @children, entry_name: entry_name_label(User::Child)
+
+  .col-12.col-md-8
+    = search_form_for @search, url: @camp_location.present? ? camp_location_children_path(@camp_location) : children_path do |s|
+      .input-group
+        = s.select :camp_location_id, CampLocation.accessible_by(current_ability).order(:name).pluck(:name, :id), { selected: @camp_location&.id, include_blank: "All #{model_name(CampLocation, plural: true)}" }, { class: 'form-control form-control-sm' }
+        = s.search_field :first_name_cont, placeholder: 'First Name', class: 'form-control form-control-sm'
+        = s.search_field :last_name_cont, placeholder: 'Last Name', class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @children
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th= sort_link(@search, :authentication_username)
+        %th= sort_link(@search, :first_name)
+        %th= sort_link(@search, :last_name)
+        %th= sort_link(@search, :date_of_birth, 'DOB')
+        %th= sort_link(@search, :email, 'Parent Email')
+        %th= sort_link(@search, :last_active_at, 'Last Active')
+        %th.actions Action
+
+    %tbody
+      - @children.each do |child|
+        %tr{ id: dom_id(child) }
+          %td= child&.authentication&.username
+          %td= child.first_name
+          %td= child.last_name
+          %td= child.date_of_birth
+          %td= child.email
+          %td= formatted_date(child.last_active_at)
+          %td.actions
+            = action_button(icon('clipboard'), 'Attendances', user_attendances_path(child))
+            = action_button(icon('list'), 'High Scores', user_scores_path(child))
+            = edit_button(edit_child_path(child).'')
+
+= paginate @children

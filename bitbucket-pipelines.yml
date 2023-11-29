@@ -1,0 +1,186 @@
+# Prerequisites - The following repository variables must be defined.
+# The values for each are provided as an example only and may be different for your project.
+# -------------------------------
+# Global
+# -------------------------------
+# $DOCKER_IMAGE - Defined in your projects .env file
+# $DOCKERHUB_USERNAME
+# $DOCKERHUB_PASSWORD
+# -------------------------------
+# Rancher 1.6 Deployment
+# -------------------------------
+# $RANCHER_URL - https://rancher.dubitcloud.com
+# $RANCHER_ENVIRONMENT_API_KEY
+# $RANCHER_ENVIRONMENT_API_KEY_SECRET
+# $RANCHER_STACK_SUFFIX - project_name
+# $RANCHER_SERVICE_NAME - api
+# $RANCHER_BACKGROUND_SERVICES - sidekiq (optional - multiple services can be specified separated by a space)
+# $RANCHER_MIGRATION_SERVICES - migrator (optional - multiple services can be specified separated by a space)
+# $RANCHER_JOB_SERVICES - sync-users (optional - multiple services can be specified separated by a space)
+# -------------------------------
+# Rancher 2.x Deployment
+# -------------------------------
+# $RANCHER_URL - https://rancher-next.dubitcloud.com
+# $RANCHER_CONTEXT - c-xxxxx:p-xxxxx
+# $RANCHER_TOKEN - token-xxxxx:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# $RANCHER_SERVICE_NAME - api
+# $RANCHER_BACKGROUND_SERVICES - sidekiq (optional - multiple services can be specified separated by a space)
+# $RANCHER_INIT_SERVICES - migrator (optional - these services must be a init containers for RANCHER_SERVICE_NAME)
+
+image: atlassian/default-image:3
+
+definitions:
+  services:
+    docker:
+      image: docker:dind
+
+  steps:
+    - step: &defaults
+        name: Default Services & Caches For All Steps
+        runs-on:
+          - 'self.hosted'
+        services:
+          - docker
+        artifacts:
+          - .env.pipeline
+
+    - step: &set-config
+        <<: *defaults
+        name: Calculate and set environment
+        script:
+          - echo "DOCKER_IMAGE=`source .env && echo $DOCKER_IMAGE`:latest-${BITBUCKET_BRANCH}" >> .env.pipeline
+          - echo "DEPLOY_ENVIRONMENT=edge" >> .env.pipeline
+
+    - step: &build-test-push
+        <<: *defaults
+        name: Build, Test & Push Docker Image
+        caches:
+          - docker
+        script:
+          # Setup SSH Agent - See: https://jira.atlassian.com/browse/BCLOUD-17590
+          - eval `ssh-agent`
+          - ssh-add $(head -1 ~/.ssh/config | cut -f2 -d " ")
+
+          # Build Docker Image
+          - DOCKER_BUILDKIT=1 docker build -t `source .env.pipeline && echo $DOCKER_IMAGE` --ssh default .
+
+          # Install Docker compose
+          - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          - chmod +x /usr/local/bin/docker-compose
+
+          # Run Tests
+          - DOCKER_IMAGE=`source .env.pipeline && echo $DOCKER_IMAGE` docker-compose -f "docker-compose.yml" run --rm tests-without-volumes
+
+          # Push To Dockerhub
+          - echo ${DOCKERHUB_PASSWORD} | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+          - docker push `source .env.pipeline && echo $DOCKER_IMAGE`
+
+    - step: &deploy-rancher-1-6
+        <<: *defaults
+        name: Deploy
+        image: rancher/cli:v0.6.7
+        script:
+          # Setup Environment Variables
+          - source .env.pipeline
+          - "RANCHER_STACK=`echo $DEPLOY_ENVIRONMENT`-${RANCHER_STACK_SUFFIX}"
+          - "DOCKER_REPOSITORY=`echo $DOCKER_IMAGE | cut -d: -f1`"
+
+          # Download the docker-compose.yml for the existing stack
+          - rancher --access-key ${RANCHER_ENVIRONMENT_API_KEY} --secret-key ${RANCHER_ENVIRONMENT_API_KEY_SECRET} --url ${RANCHER_URL} export ${RANCHER_STACK}
+          - cd ${RANCHER_STACK}
+
+          # Replace existing tag in docker-compose.yml with new one
+          - "sed -i -E \"s|image: ${DOCKER_REPOSITORY}.*|image: ${DOCKER_IMAGE}|g\" docker-compose.yml"
+
+          # Update Migration Services
+          - "[[ -n \"${RANCHER_MIGRATION_SERVICES}\" ]] && rancher --access-key ${RANCHER_ENVIRONMENT_API_KEY} --secret-key ${RANCHER_ENVIRONMENT_API_KEY_SECRET} --url ${RANCHER_URL} --wait --wait-state \"healthy\" up --force-upgrade -u -d -c -s ${RANCHER_STACK} ${RANCHER_MIGRATION_SERVICES}"
+
+          # Update Job Services
+          - "[[ -n \"${RANCHER_BACKGROUND_SERVICES}\" ]] && rancher --access-key ${RANCHER_ENVIRONMENT_API_KEY} --secret-key ${RANCHER_ENVIRONMENT_API_KEY_SECRET} --url ${RANCHER_URL} --wait --wait-state \"healthy\" up --force-upgrade -u -d -c -s ${RANCHER_STACK} ${RANCHER_BACKGROUND_SERVICES}"
+
+          # Update Background Services
+          - "[[ -n \"${RANCHER_JOB_SERVICES}\" ]] && rancher --access-key ${RANCHER_ENVIRONMENT_API_KEY} --secret-key ${RANCHER_ENVIRONMENT_API_KEY_SECRET} --url ${RANCHER_URL} --wait --wait-state \"healthy\" up --force-upgrade -u -d -c -s ${RANCHER_STACK} ${RANCHER_JOB_SERVICES}"
+
+          # Update Service
+          - rancher --access-key ${RANCHER_ENVIRONMENT_API_KEY} --secret-key ${RANCHER_ENVIRONMENT_API_KEY_SECRET} --url ${RANCHER_URL} --wait --wait-state "healthy" up --force-upgrade -u -d -c -s ${RANCHER_STACK} ${RANCHER_SERVICE_NAME}
+
+          # Clean up
+          - cd ..
+          - rm -rf ${RANCHER_STACK}
+
+    - step: &deploy-rancher-2-x
+        <<: *defaults
+        name: Deploy
+        image: dubit/rancher-kubectl:2.4.10
+        script:
+          # Setup Environment Variables
+          - source .env.pipeline
+
+          # Login
+          - rancher login $RANCHER_URL -t $RANCHER_TOKEN --context $RANCHER_CONTEXT
+
+          # Update Init Services
+          - >-
+            if [[ -n \"${RANCHER_INIT_SERVICES}\" ]]; then
+              for SERVICE in $RANCHER_INIT_SERVICES
+              do
+                rancher kubectl --namespace=$DEPLOY_ENVIRONMENT patch deployment $RANCHER_SERVICE_NAME -p "{ \"spec\": { \"template\": { \"spec\": { \"initContainers\": [ { \"name\": \"$SERVICE\", \"image\": \"$DOCKER_IMAGE\", \"env\": [{ \"name\": \"GIT_COMMIT\", \"value\": \"$BITBUCKET_COMMIT\" }] } ] } } } }"
+                rancher kubectl wait --for=condition=available --timeout=600s deployment/$RANCHER_SERVICE_NAME -n $DEPLOY_ENVIRONMENT
+              done
+            fi
+
+          # Update Background Services
+          - >-
+            if [[ -n \"${RANCHER_BACKGROUND_SERVICES}\" ]]; then
+              for SERVICE in $RANCHER_BACKGROUND_SERVICES
+              do
+                rancher kubectl --namespace=$DEPLOY_ENVIRONMENT patch deployment $SERVICE -p "{ \"spec\": { \"template\": { \"spec\": { \"containers\": [ { \"name\": \"$SERVICE\", \"image\": \"$DOCKER_IMAGE\", \"env\": [{ \"name\": \"GIT_COMMIT\", \"value\": \"$BITBUCKET_COMMIT\" }] } ] } } } }"
+                rancher kubectl wait --for=condition=available --timeout=600s deployment/$SERVICE -n $DEPLOY_ENVIRONMENT
+              done
+            fi
+
+          # Update Service
+          - >-
+            rancher kubectl --namespace=$DEPLOY_ENVIRONMENT patch deployment $RANCHER_SERVICE_NAME -p "{ \"spec\": { \"template\": { \"spec\": { \"containers\": [ { \"name\": \"$RANCHER_SERVICE_NAME\", \"image\": \"$DOCKER_IMAGE\", \"env\": [{ \"name\": \"GIT_COMMIT\", \"value\": \"$BITBUCKET_COMMIT\" }] } ] } } } }"
+
+          - >-
+            rancher kubectl wait --for=condition=available --timeout=600s deployment/$RANCHER_SERVICE_NAME -n $DEPLOY_ENVIRONMENT
+
+pipelines:
+  branches:
+    # Docker tag "latest"
+    development:
+      - step:
+          <<: *set-config
+          script:
+            - echo "DOCKER_IMAGE=`source .env && echo $DOCKER_IMAGE`:latest" >> .env.pipeline
+            - echo "DEPLOY_ENVIRONMENT=edge" >> .env.pipeline
+
+      - step: *build-test-push
+      - step:
+          <<: *deploy-rancher-1-6
+          deployment: edge
+
+    # Docker tag "latest-{branch_name}" i.e. "latest-dev_fixes"
+    dev_*:
+      - step: *set-config
+      - step: *build-test-push
+      - step:
+          <<: *deploy-rancher-1-6
+          deployment: edge
+          trigger: manual
+
+  tags:
+    # Docker tag "{semver}" i.e. "1.2.3"
+    v*:
+      - step:
+          <<: *set-config
+          script:
+            - TAG=`echo $BITBUCKET_TAG | sed 's/v//g'`
+            - echo "DOCKER_IMAGE=`source .env && echo $DOCKER_IMAGE`:${TAG}" >> .env.pipeline
+            - echo "DEPLOY_ENVIRONMENT=stable" >> .env.pipeline
+
+      - step: *build-test-push
+      - step:
+          <<: *deploy-rancher-1-6
+          deployment: stable

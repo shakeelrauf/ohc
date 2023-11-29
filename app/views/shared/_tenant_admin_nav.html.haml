@@ -1,0 +1,15 @@
+- if current_tenant
+  = sidebar_sublist('Tenant Management') do
+    = nav_link 'Manage Tenants', reset_tenants_path, 'rewind'
+
+  = render 'shared/super_admin_nav'
+
+- else
+  = sidebar_sublist('Tenant Management') do
+    = nav_link Tenant, tenants_path, 'database'
+    = nav_link ColorTheme, color_themes_path, 'eye'
+
+  = sidebar_sublist('Admin Settings') do
+    = nav_link 'Settings', settings_path, 'settings'
+    = nav_link 'Stream Pool', streams_path, 'film'
+    = nav_link 'Comet Chat Review', comet_chat_reviews_path, 'message-square'

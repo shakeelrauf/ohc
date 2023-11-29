@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>API::V2::Admin::Events::PushNotificationsController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="API::V2::Admin::Events::PushNotificationsController">
+
+  
+
+    <meta name="keywords" content="API::V2::Admin::Events::PushNotificationsController class">
+  
+    <meta name="keywords" content="create">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            API::V2::Admin::Events::PushNotificationsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="../BaseController.html">API::V2::Admin::BaseController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../../files/app/controllers/api/v2/admin/events/push_notifications_controller_rb.html">app/controllers/api/v2/admin/events/push_notifications_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <main id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../../../../../classes/API/V2/Admin/Events/PushNotificationsController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-create-label-5BPOST-5D+-2Fapi-2Fv2-2Fadmin-2Fevents-2F-7Bevent_id-7D-2Fpush_notifications.json">[POST] /api/v2/admin/events/{event_id}/push_notifications.json</h2>
+
+<p>Send a push notification regarding an event</p>
+
+<h4 id="method-i-create-label-Returns">Returns</h4>
+<ul><li>
+<p>200 - success</p>
+</li><li>
+<p>422 - failure</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/admin/events/push_notifications_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-identifier">event</span> = <span class="ruby-identifier">fetch_event</span>
+  <span class="ruby-identifier">decorated_event</span> = <span class="ruby-constant">EventDecorator</span>.<span class="ruby-identifier">decorate</span>(<span class="ruby-identifier">event</span>)
+
+  <span class="ruby-identifier">authorize!</span> <span class="ruby-value">:notify</span>, <span class="ruby-identifier">event</span>
+
+  <span class="ruby-identifier">push_notification</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Event</span><span class="ruby-operator">::</span><span class="ruby-constant">PushNotification</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">event:</span> <span class="ruby-identifier">event</span>,
+                                                    <span class="ruby-value">body:</span> <span class="ruby-identifier">decorated_event</span>.<span class="ruby-identifier">push_notification_body</span>,
+                                                    <span class="ruby-value">title:</span> <span class="ruby-identifier">decorated_event</span>.<span class="ruby-identifier">push_notification_title</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">push_notification</span>.<span class="ruby-identifier">valid?</span>
+    <span class="ruby-identifier">push_notification</span>.<span class="ruby-identifier">deliver!</span>
+
+    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span><span class="ruby-operator">::</span><span class="ruby-constant">PushNotificationSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">push_notification</span>, <span class="ruby-identifier">serializer_params</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render_object_error</span> <span class="ruby-value">object:</span> <span class="ruby-identifier">push_notification</span>, <span class="ruby-value">serializer:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span><span class="ruby-operator">::</span><span class="ruby-constant">PushNotificationSerializer</span>, <span class="ruby-value">status:</span> <span class="ruby-value">:unprocessable_entity</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </main>
+  </body>
+</html>

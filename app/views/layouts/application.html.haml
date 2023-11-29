@@ -1,0 +1,40 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{content: 'text/html; charset=utf-8', 'http-equiv' => 'Content-type'}
+    %meta{charset: 'UTF-8'}
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    %meta{'http-equiv' => 'X-UA-Compatible', content: 'IE=edge'}
+
+    %title= project_name
+    :javascript
+      window.AppcuesSettings = {
+        enableURLDetection: true
+      };
+    %script{src: "//fast.appcues.com/128874.js"}
+    = csrf_meta_tag
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+
+    = render partial: 'shared/theme_css' if current_tenant&.color_theme
+
+  %body
+    :javascript
+      window.Appcues.identify("#{current_user.id}", {
+      created_at: "#{current_user.created_at}", // Unix timestamp of user signup date
+      role:  "#{current_user.role}",
+      });
+    = render partial: 'shared/header'
+    .container-fluid
+      .row
+        - if logged_in?
+          = render partial: 'shared/sidebar'
+
+        %main.ms-auto.px-4.pb-3{ role: 'main', class: logged_in? ? 'col-lg-10' : 'col-xs-12 col-md-6 me-auto' }
+          = render partial: 'shared/flash', locals: { flash: flash }
+          = render 'shared/title'
+          .row
+            .col
+              = yield :layout

@@ -1,0 +1,7 @@
+- title_bar "Edit #{@setting.name}"
+
+= bootstrap_form_with model: @setting do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(Setting), class: 'btn btn-success'

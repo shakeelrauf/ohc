@@ -1,0 +1,4 @@
+= f.file_field attribute, options.merge(placeholder: (attachment.filename if attachment&.attached?))
+- if f.object&.persisted? && attachment&.attached?
+  = link_to rails_blob_path(attachment, disposition: 'attachment'), class: 'd-inline-block mb-3' do
+    %small Current #{attribute.to_s.titleize}

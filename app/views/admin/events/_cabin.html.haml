@@ -1,0 +1,17 @@
+- event.cabins.each do |cabin|
+  %ul.list-unstyled.mb-0
+    %li
+      %strong= "#{model_name(CampLocation)}:"
+      = cabin.camp.season.camp_location.name
+
+    %li
+      %strong= "#{model_name(Season)}:"
+      = cabin.camp.season.name
+
+    %li
+      %strong= "#{model_name(Camp)}:"
+      = cabin.camp.name
+
+    %li
+      %strong= "#{model_name(Cabin)}:"
+      = cabin.name

@@ -1,0 +1,54 @@
+- title_bar model_name(Theme, plural: true) do
+  = new_button(new_button_label(Theme), new_theme_path)
+
+%p= page_entries_info @themes, entry_name: entry_name_label(Theme)
+
+.row.mb-3.align-items-center
+  .col-12.col-md-4
+    Sort:
+    = sort_link(@search, :name)
+    |
+    = sort_link(@search, :created_at, 'Created')
+
+  .col-12.col-md-8
+    = search_form_for @search, url: themes_path do |s|
+      .input-group
+        = s.select :camp_location_id, CampLocation.accessible_by(current_ability).order(:name).pluck(:name, :id), { selected: @camp_location&.id, include_blank: "All #{model_name(CampLocation, plural: true)}" }, { class: 'form-control form-control-sm' }
+        = s.search_field :name_cont, placeholder: 'Search (Name)', class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @themes
+
+- @themes.each do |theme|
+  .card.mb-3{ id: dom_id(theme), data: { href: theme_path(theme) } }
+    .card-body
+      .row
+        .col-12.col-md-3
+          %strong Quiz:
+          = theme.name
+
+        .col-12.col-md-3
+          - if theme.camp_location
+            %strong= "#{model_name(CampLocation)}:"
+            = theme.camp_location.name
+          - else
+            %strong National
+
+        .col-12.col-md-2
+          %strong Times Played:
+          = theme.scores.count
+
+        .col-12.col-md-3
+          %strong Status:
+          = theme.active? ? 'Visible' : 'Hidden'
+
+        .col-12.col-md-1.text-end
+          = more_button do
+            = link_to edit_button_label(Theme), edit_theme_path(theme), class: 'dropdown-item'
+
+- if @themes.none?
+  .card.mb-3
+    .card-body.text-center.disabled= no_items_label(Theme)
+
+= paginate @themes

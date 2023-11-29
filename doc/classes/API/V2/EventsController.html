@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>API::V2::EventsController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="API::V2::EventsController">
+
+  
+
+    <meta name="keywords" content="API::V2::EventsController class">
+  
+    <meta name="keywords" content="index, show">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            API::V2::EventsController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="BaseController.html">API::V2::BaseController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/app/controllers/api/v2/events_controller_rb.html">app/controllers/api/v2/events_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <main id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../../../classes/API/V2/EventsController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-index-label-5BGET-5D+-2Fapi-2Fv2-2Fevents.json">[GET] /api/v2/events.json</h2>
+
+<p>Retrieve an index of events</p>
+
+<h4 id="method-i-index-label-Returns">Returns</h4>
+<ul><li>
+<p>200 - success - returns the events</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/events_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-identifier">events</span> = <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">accessible_by</span>(<span class="ruby-identifier">current_ability</span>)
+                .<span class="ruby-identifier">order</span>(<span class="ruby-value">starts_at:</span> <span class="ruby-value">:asc</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">serializer_params</span>[<span class="ruby-value">:include</span>]&amp;.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;stream&#39;</span>)
+    <span class="ruby-identifier">head</span> <span class="ruby-value">:forbidden</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">EventSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">events</span>, <span class="ruby-identifier">serializer_params</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../../../classes/API/V2/EventsController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-show-label-5BGET-5D+-2Fapi-2Fv2-2Fevents-2F-7Bid-7D.json">[GET] /api/v2/events/{id}.json</h2>
+
+<p>Retrieve a single event</p>
+
+<h4 id="method-i-show-label-Required">Required</h4>
+<ul><li>
+<p>id - the id of the event to return (Implied in URL)</p>
+</li></ul>
+
+<h4 id="method-i-show-label-Returns">Returns</h4>
+<ul><li>
+<p>200 - success - returns the event</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/events_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
+  <span class="ruby-identifier">event</span> = <span class="ruby-identifier">scope</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
+  <span class="ruby-identifier">authorize!</span> <span class="ruby-value">:read</span>, <span class="ruby-identifier">event</span>
+
+  <span class="ruby-identifier">merged_serializer_params</span> = <span class="ruby-identifier">serializer_params</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">serializer_params</span>[<span class="ruby-value">:include</span>]&amp;.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;stream&#39;</span>)
+    <span class="ruby-identifier">authorize!</span> <span class="ruby-value">:read</span>, <span class="ruby-identifier">event</span>.<span class="ruby-identifier">stream</span>
+
+    <span class="ruby-identifier">merged_serializer_params</span>.<span class="ruby-identifier">deep_merge!</span>(<span class="ruby-value">params:</span> { <span class="ruby-value">include_url:</span> <span class="ruby-keyword">true</span> })
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">EventSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">event</span>, <span class="ruby-identifier">merged_serializer_params</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </main>
+  </body>
+</html>

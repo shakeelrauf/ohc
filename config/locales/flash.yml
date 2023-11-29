@@ -1,0 +1,24 @@
+en:
+  flash:
+    errors:
+      not_found: '%{resource_name} could not be found.'
+      unauthorized: You are not authorized to access that page.
+    actions:
+      create:
+        notice: '%{resource_name} was successfully created.'
+        error: '%{resource_name} could not be created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        error: '%{resource_name} could not be deleted.'
+      merged:
+        notice: '%{resource_name} were successfully merged.  Please confirm their %{confirm_name}.'
+        error: '%{resource_name} could not me merged'
+    event:
+      started: 'Event stream is now starting.'
+      stopped: 'Event has been closed and the stream stopped.'
+      notified: 'Event participants have been notified.'
+      opened: 'Event has been opened.'
+    stream:
+      stopped: 'Stream has been stopped'

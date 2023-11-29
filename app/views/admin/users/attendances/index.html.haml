@@ -1,0 +1,19 @@
+- title_bar "Attendances for #{@user.full_name}"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Code
+      %th= model_name(CampLocation)
+      %th= model_name(Cabin)
+      %th.actions Action
+
+  %tbody
+    - AttendanceDecorator.decorate_collection(@attendances).each do |attendance|
+      %tr{ id: dom_id(attendance) }
+        %td= attendance.camp.name
+        %td= attendance.formatted_code
+        %td= attendance.camp_location.name
+        %td= attendance.cabin.name
+        %td= delete_button(user_attendance_path(attendance.user, attendance), text: 'Delete', remote: false)

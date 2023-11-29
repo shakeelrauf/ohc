@@ -1,0 +1,8 @@
+%h3.text-center.mb-4 Forgotten Password
+
+= bootstrap_form_for @user, url: passwords_path do |f|
+  = render 'shared/form_base_errors', f: f
+  = f.text_field :email, placeholder: 'Email Address', required: true, hide_label: true
+
+  = f.form_group do
+    = f.submit 'Reset Password'

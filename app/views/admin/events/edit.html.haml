@@ -1,0 +1,8 @@
+- title_bar "Edit #{@event.name}" do
+  = delete_button(event_path(@event, event_type: params[:event_type]), text: "Delete #{@event.name}", remote: false, disabled: !@event.can_be_deleted?)
+
+= bootstrap_form_with model: @event, url: event_path(@event, event_type: params[:event_type]), scope: :event do |event_form|
+  = render 'form', event_form: event_form
+
+  = event_form.form_group do
+    = event_form.submit update_button_label(@event.class), class: 'btn btn-success'

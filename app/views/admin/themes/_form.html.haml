@@ -1,0 +1,20 @@
+= theme_form.text_field :name, maxlength: 24, label: 'Name', help: 'Max 24 characters'
+
+= theme_form.form_group do
+  = theme_form.check_box :active
+
+- if current_user.super_admin?
+  = theme_form.select :camp_location_id, CampLocation.accessible_by(current_ability).pluck(:name, :id), include_blank: 'National', label: model_name(CampLocation)
+
+= theme_form.label :questions
+
+.nested-form
+  .nested-items
+    = theme_form.fields_for :quiz_questions do |f|
+      = render 'quiz_question_fields', f: f
+
+  .card.mb-3
+    .card-body.text-center
+      .links
+        = link_to_add_association "#{icon('plus')} Add Question".html_safe, theme_form, :quiz_questions, class: 'btn btn-sm btn-link',
+                                                                                                         wrap_object: Proc.new { |question| question.answers.build; question }

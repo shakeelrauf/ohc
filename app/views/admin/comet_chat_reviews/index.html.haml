@@ -1,0 +1,53 @@
+- title_bar t('admins.comet_chat_reviews.index')
+
+= bootstrap_form_with url: comet_chat_reviews_path, method: :get, local: true do |form|
+  .form-row
+    .col
+      = form.text_field :conversation_id, placeholder: 'Conversation ID', value: params[:conversation_id]
+    .col
+      = form.number_field :limit, placeholder: 'Limit', value: params[:limit], min: 1, max: 1000
+  
+  .form-row
+    .col
+      = form.date_field :from_timestamp, label: 'Start Date', value: params[:from_timestamp]
+    .col
+      = form.date_field :to_timestamp, label: 'End Date', value: params[:to_timestamp]
+
+  = form.submit 'Search', name: nil, class: 'btn btn-sm btn-secondary'
+
+- if @data.present?
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th ID
+        %th Receiver Type
+        %th Conversation ID
+        %th Type
+        %th Message
+        %th Sender
+        %th Receiver
+        %th Sent At
+
+    %tbody
+      - @data.each do |item|
+        - entities = item.data['entities']
+
+        %tr{ id: item.id }
+          %td= item.id
+          %td= item.receiver_type
+          %td= item.conversation_id
+          %td= item.type
+          %td= item.data['text']
+          %td
+            = entities['sender']['entity']['name']
+            %br
+            = "(#{item.sender})"
+          %td
+            = entities['receiver']['entity']['name']
+            %br
+            = "(#{item.receiver})"
+          %td
+            - if item.sent_at.present?
+              = Time.at(item.sent_at)
+- else
+  %p No messages found

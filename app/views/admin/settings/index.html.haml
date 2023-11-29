@@ -1,0 +1,25 @@
+- title_bar model_name(Setting)
+
+%p= page_entries_info @settings, entry_name: entry_name_label(Setting)
+
+= paginate @settings
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Name
+        %th Value
+        %th Status
+        %th Actions
+
+    %tbody
+      - @settings.each do |setting|
+        %tr{ id: dom_id(setting) }
+          %td= setting.name
+          %td= setting.value
+          %td= setting.visible? ? 'Public' : 'Private'
+          %td.actions
+            = edit_button([:edit, setting],'')
+
+= paginate @settings

@@ -1,0 +1,22 @@
+%h3.text-center.mb-4 Change Your Password
+
+= bootstrap_form_for @authentication, url: password_path(@authentication), method: :patch do |f|
+  = f.password_field :password, placeholder: 'New Password',
+                                id: 'password',
+                                hide_label: true,
+                                append: content_tag(:a, icon('eye-off'), href: '', class: 'toggle-password-field', data: { toggle: '#password' })
+
+  - unless f.object.errors[:password].any?
+    %small.form-text
+      Your new password must be more than 6 characters long and contain:
+
+      %ul
+        %li a digit
+        %li a lowercase character
+        %li an uppercase character
+
+  = hidden_field_tag :id, @authentication.id
+  = hidden_field_tag :reset_token, @authentication.password_reset_token&.token
+
+  = f.form_group do
+    = f.submit 'Update Password'

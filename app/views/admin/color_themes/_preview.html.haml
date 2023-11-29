@@ -1,0 +1,8 @@
+- style = "background: linear-gradient(#{color_theme.primary_color}, #{color_theme.secondary_color});"
+
+.color-theme-preview{ style: style }
+  - ColorTheme::APP_LAYOUTS.each do |app_layout|
+    - classes = [app_layout]
+    - classes << 'd-none' unless color_theme.app_layout == app_layout
+
+    = image_tag("#{app_layout}_theme_preview.png", class: classes)

@@ -1,0 +1,8 @@
+- title_bar "Edit #{@color_theme.name}" do
+  = delete_button(@color_theme, text: "Delete #{@color_theme.name}", remote: false, disabled: !@color_theme.can_be_deleted?)
+
+= bootstrap_form_with model: @color_theme, url: color_theme_path(@color_theme) do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(ColorTheme), class: 'btn btn-success'

@@ -1,0 +1,59 @@
+.games-table,
+.sortable-row {
+  background-color: $color-white;
+  border: 1px solid $color-grey-pale;
+}
+
+.sortable-row {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: .75rem;
+
+  .sortable-cell {
+    flex: 1 1 100%;
+    padding: 0 5px;
+  }
+
+  .thumbnail,
+  .actions,
+  .position {
+    flex: 0 0 auto;
+  }
+
+  .position {
+    width: 30px;
+  }
+
+  .actions {
+    width: 100px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    .actions {
+      white-space: nowrap;
+    }
+  }
+
+  .thumbnail {
+    height: 60px;
+    width: 70px;
+  }
+
+  &.new {
+    background-color: $color-blue-cyan;
+  }
+
+  &.super_challenge {
+    background-color: $color-pink-rose;
+  }
+}
+
+.sortable-header-row {
+  border-width: 0;
+  border-bottom-width: 1px;
+
+  .thumbnail {
+    height: auto;
+  }
+}

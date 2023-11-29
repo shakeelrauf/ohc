@@ -1,0 +1,10 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        authentication:
+          attributes:
+            password:
+              must_contain_digit: 'doit comprendre un chiffre'
+              must_contain_lc_character: 'doit comprendre un caractère bas de casse'
+              must_contain_uc_character: 'doit comprendre un caractère haut de casse'

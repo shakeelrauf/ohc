@@ -1,0 +1,98 @@
+- title_bar "#{model_name(@new_event.class)} (#{@showing_past ? 'Past' : 'Current'})" do
+  - if can? :new, @new_event
+    = new_button(new_button_label(@new_event.class), new_event_path(event_type: params[:event_type]))
+
+  - if @showing_past
+    = action_button(icon('list'), "Current #{model_name(@new_event.class, plural: true)}", events_path(event_type: params[:event_type]))
+  - else
+    = action_button(icon('list'), "Past #{model_name(@new_event.class, plural: true)}", events_path(event_type: params[:event_type], past: true))
+
+.card.mb-3
+  .card-body
+    .row.align-items-center
+      .col-12.col-md-2
+        %strong.text-nowrap{ data: { toggle: 'tooltip', placement: 'bottom', title: 'The number of concurrent streams currently available' } }
+          Active Streams:
+      .col-12.col-md-9
+        .progress
+          .progress-bar{ style: "width: #{(@tenant.streams.count / @tenant.max_streams) * 100 rescue 0}%;" }
+      .col-12.col-md-1.text-nowrap
+        = "#{@tenant.streams.count}/#{@tenant.max_streams}"
+
+    .row.align-items-center
+      .col-12.col-md-2
+        %strong.text-nowrap{ data: { toggle: 'tooltip', placement: 'bottom', title: 'The number of hours streaming used this month' } }
+          Hours Streamed:
+      .col-12.col-md-9
+        .progress
+          .progress-bar{ style: "width: #{@tenant.max_stream_hours_percentage}%;", class: (@tenant.max_stream_hours_percentage > 90 ? 'bg-danger' : '') }
+      .col-12.col-md-1.text-nowrap
+        = "#{@tenant.max_stream_hours_label}"
+
+%p= page_entries_info @events, entry_name: "#{@showing_past ? 'past' : ''} #{entry_name_label(@new_event.class)}"
+
+= paginate @events
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Name
+        %th Time
+        %th Details
+        %th Owner
+        %th= @showing_past ? 'Status' : 'Stream'
+        %th.actions Action
+
+    %tbody
+      - @events.each do |event|
+        %tr{ id: dom_id(event), class: ('disabled' unless event.active?) }
+          %td= event.name
+          %td
+            %ul.list-unstyled
+              %li
+                %strong= event.started_at ? 'Started:' : 'Starts:'
+                = formatted_date(event.started_at || event.starts_at, default: '')
+              %li
+                %strong= event.ended_at? ? 'Ended:' : 'Ends:'
+                = formatted_date(event.ended_at || event.ends_at, default: '')
+
+          %td= render event.kind.downcase, event: event
+          %td= event.admin&.full_name || 'Admin Deleted'
+          %td
+            - if @showing_past
+              = event.active? ? 'Visible' : 'Hidden'
+            - else
+              = render 'stream', event: event if event.stream
+
+          %td.actions
+            - if event.closed?
+              = link_to "#{icon('play-circle')} Start Stream".html_safe, start_event_path(event, event_type: params[:event_type]), method: :put, class: 'btn btn-sm btn-success', data: { disable_with: 'Starting...' }
+
+            - if event.started?
+              = link_to "#{icon('unlock')} Open".html_safe, open_event_path(event, event_type: params[:event_type]), method: :put, class: 'btn btn-sm btn-success', data: { disable_with: 'Opening...' }
+
+            - if event.started? || event.open?
+              = link_to "#{icon('stop-circle')} Stop & Close Stream".html_safe, stop_event_path(event, event_type: params[:event_type]), method: :put, class: 'btn btn-sm btn-danger', data: { disable_with: 'Stopping...' }
+
+            .dropdown
+              %button.btn.btn-sm.btn-info.dropdown-bs-toggle{ data: { toggle: 'dropdown' }, type: 'button' }
+                = "#{icon('smartphone')} Send Notification".html_safe
+
+              .dropdown-menu
+                - decorated_event = EventDecorator.decorate(event)
+
+                - ['starting', 'reminder'].each do |context|
+                  - body = decorated_event.send("push_notification_body_#{context}")
+
+                  = link_to context.humanize, event_push_notifications_path(event, event_type: params[:event_type], event_push_notification: { title: decorated_event.push_notification_title, body: body }),
+                                              data: { confirm: "Are you sure you wish to send the notification:\n#{body}" },
+                                              method: :post,
+                                              class: 'dropdown-item'
+
+                = link_to 'Custom', new_event_push_notification_path(event, event_type: params[:event_type]), class: 'dropdown-item'
+
+
+            = edit_button(edit_event_path(event, event_type: params[:event_type]),'Edit')
+
+= paginate @events

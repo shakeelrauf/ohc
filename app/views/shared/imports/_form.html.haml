@@ -1,0 +1,7 @@
+= bootstrap_form_with model: import, local: true, url: url do |f|
+  = render 'shared/form_base_errors', f: f
+
+  = f.file_field :csv_file, accept: 'text/csv', required: true
+
+  = f.form_group do
+    = f.submit "Import #{model_name(User::Child, plural: true)}", class: 'btn btn-success'

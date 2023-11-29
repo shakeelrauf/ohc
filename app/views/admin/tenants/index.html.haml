@@ -1,0 +1,27 @@
+- title_bar model_name(Tenant, plural: true) do
+  = new_button(new_button_label(Tenant), new_tenant_path)
+
+%p= page_entries_info @tenants, entry_name: entry_name_label(Tenant)
+ 
+= paginate @tenants
+
+.row.row-cols-1.row-cols-md-5.g-1
+  - TenantDecorator.decorate_collection(@tenants).each do |tenant|
+    .card.text-bg-info.h-100.m-1{ id: dom_id(tenant), data: { href: switch_tenant_path(tenant) } }
+      .card-body
+        .row
+          .col.text-truncate
+            = tenant.name
+          .col.text-end
+            = edit_button( edit_tenant_path(tenant), '')
+        .row
+          .col
+            %strong.text-nowrap Users:
+            = tenant.users.count
+
+
+- if @tenants.none?
+  .card.mb-3
+    .card-body.text-center.disabled= no_items_label(Tenant)
+
+= paginate @tenants

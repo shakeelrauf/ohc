@@ -1,0 +1,14 @@
+en:
+  admins:
+    passwords:
+      invalid_link: 'Invalid or expired password reset link'
+      sent: 'If you are a registered user, you will receive a password reset email'
+      success: 'You have successfully changed your password, you can now login'
+    profile:
+      success: 'Sucessfully updated profile'
+    registrations:
+      success: 'Thank you for registering, we have sent a confirmation email to %{email}'
+    sessions:
+      fail: 'Invalid email or password'
+    comet_chat_reviews:
+      index: 'Comet Chat Reviews'

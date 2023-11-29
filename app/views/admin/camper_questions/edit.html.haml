@@ -1,0 +1,9 @@
+- title_bar 'Edit Reply' do
+  - if can?(:destroy, @camper_question)
+    = delete_button(camper_question_path(@camper_question), text: 'Delete', remote: false)
+
+= bootstrap_form_with model: @camper_question do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit 'Send Reply', class: 'btn btn-success'

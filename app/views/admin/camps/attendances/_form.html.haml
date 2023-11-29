@@ -1,0 +1,21 @@
+= f.text_field :code, readonly: true if f.object.persisted?
+
+.mb-4
+  - if f.object.new_record?
+    %h3 1. Select #{model_name(Cabin)}
+  = f.select :cabin_id, f.object.camp.cabins.pluck(:name, :id), selected: f.object.cabin_id, hide_label: true
+
+- if f.object.new_record?
+  %h3.mb-3 2. Select Person
+
+  %h5 Add an existing Person
+  = f.select :user_id, grouped_options_for_user_select(f.object.user_id), hide_label: true
+
+  %h5 Or Add New #{model_name(User::Admin)} or #{model_name(User::Child)}
+  %p To add a new person, please create them separately and then reload this page.
+
+  - if can?(:new, User::Admin.new(tenant_params.merge(camp_location_id: current_user.camp_location_id, role: User::Admin.roles[:cabin_admin])))
+    = link_to("Create #{model_name(User::Admin).downcase} in new tab", new_admin_path, class: 'btn btn-sm btn-secondary', target: :_blank)
+
+  - if can?(:new, User::Child.new(tenant_params.merge(attendances_attributes: [{ camp_id: current_user.camp_location&.camp_ids&.first}])))
+    = link_to("Create #{model_name(User::Child).downcase} in new tab", new_child_path, class: 'btn btn-sm btn-secondary', target: :_blank)

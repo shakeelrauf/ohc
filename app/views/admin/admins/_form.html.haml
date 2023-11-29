@@ -1,0 +1,23 @@
+= render 'shared/form_base_errors', f: f
+
+= f.text_field :first_name
+= f.text_field :last_name
+= f.select :gender, (User.genders.values.map { |gender| [gender.titleize, gender]})
+= f.text_field :email
+
+= f.fields_for :authentication do |a|
+  = a.hidden_field :id
+  = a.text_field :username
+  = a.password_field :password
+  = a.password_field :password_confirmation
+
+= f.time_zone_select :time_zone
+
+- roles = roles_select_for_user(current_user, current_tenant)
+- if roles.any?
+  = f.select :role, roles
+
+- if current_user.super_admin?
+  = f.select :camp_location_id, current_tenant.camp_locations.order(:name).pluck(:name, :id), label: model_name(CampLocation)
+
+= render 'admin/attendances/form', f: f

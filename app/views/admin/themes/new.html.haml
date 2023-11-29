@@ -1,0 +1,7 @@
+- title_bar new_button_label(Theme)
+
+= bootstrap_form_with model: @theme, url: themes_path, local: true do |theme_form|
+  = render 'form', theme_form: theme_form
+
+  = theme_form.form_group do
+    = theme_form.submit create_button_label(Theme), class: 'btn btn-success'

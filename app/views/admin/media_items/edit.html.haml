@@ -1,0 +1,10 @@
+- path = @media_item.camp ? camp_media_item_path(@media_item.camp, @media_item) : media_item_path(@media_item)
+
+- title_bar edit_button_label(MediaItem) do
+  = delete_button(path, text: "Delete #{model_name(MediaItem)}")
+
+= bootstrap_form_with model: @media_item, url: path, scope: :media_item do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(MediaItem), class: 'btn btn-success', data: { disable_with: 'Uploading...' }

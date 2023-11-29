@@ -1,0 +1,39 @@
+- title_bar model_name(CampLocation, plural: true) do
+  = new_button(new_button_label(CampLocation), new_camp_location_path)
+
+%p= page_entries_info @camp_locations, entry_name: entry_name_label(CampLocation)
+
+-# if @camp_locations.size == 1
+  -#= render 'show', camp_location_path(@camp_locations[0])
+
+.row.mb-3.align-items-center
+  .col-12.col-md-8
+    Sort:
+    = sort_link(@search, :name)
+    |
+    = sort_link(@search, :created_at, 'Created')
+
+  .col-12.col-md-4
+    = search_form_for @search, url: camp_locations_path do |s|
+      .input-group
+        = s.search_field :name_cont, placeholder: 'Search (Name)', class: 'form-control form-control-sm'
+        .input-group-append
+          = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @camp_locations
+
+.row.row-cols-1.row-cols-md-5.g-1
+  - @camp_locations.each do |camp_location|
+    .card.text-bg-info.h-100.m-1{ id: dom_id(camp_location), data: { href: camp_location_path(camp_location) } }
+      .card-body
+        .row
+          .col.text-truncate
+            = camp_location.name
+          .col.text-end
+            = edit_button( edit_camp_location_path(camp_location), '')
+
+- if @camp_locations.none?
+  .card.mb-3
+    .card-body.text-center.disabled= no_items_label(CampLocation)
+
+= paginate @camp_locations

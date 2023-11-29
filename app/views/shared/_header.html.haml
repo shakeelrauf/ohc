@@ -1,0 +1,36 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.shadow.navbar-ohc.flex-lg-row.align-items-lg-center
+  = link_to root_path, class: 'navbar-brand col-lg-2' do
+    %span= current_tenant ? current_tenant.name : 'Faith Spark'
+
+
+
+  - if logged_in?
+    %ul.navbar-nav.navbar-submenu.d-lg-none
+      %li.nav-item.text-nowrap
+        - if current_user.tenant == current_tenant
+          = link_to 'Profile', edit_admin_path(current_user), class: 'nav-link'
+      %li.nav-item.text-nowrap
+        = link_to 'Sign out', logout_path, class: 'nav-link'
+
+    %button.navbar-toggler{ data: { toggle: 'collapse', target: '.header-content' } }
+      %span.navbar-toggler-icon
+
+    %nav.breadcrumbs.w-100.d-flex.justify-content-between{ aria: { label: 'breadcrumb' } }
+      %ol.breadcrumb.m-1
+        - if @breadcrumbs.present?
+          - @breadcrumbs.each do |crumb|
+            %li.breadcrumb-item
+              - if crumb.second
+                = link_to crumb.first, crumb.second
+              - else
+                = crumb.first
+
+      %ul.navbar-nav.m-2
+        -#  Remove clock from nav bar - DE Apr 18,2023
+        -#  %li.text-nowrap
+        -#  #current-time.nav-link.disabled= l(Time.zone.now)
+
+        - if current_user.tenant == current_tenant
+          %li.d-none.d-lg-flex= link_to 'Profile', edit_admin_path(current_user), class: 'nav-link'
+
+        %li.d-none.d-lg-flex= link_to 'Sign out', logout_path, class: 'nav-link'

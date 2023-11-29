@@ -1,0 +1,28 @@
+.card.nested-fields.mb-3
+  .card-header.text-end.p-0.pe-2
+    = link_to_remove_association "#{icon('trash-2')}".html_safe, f, class: 'btn btn-sm btn-link'
+
+  .card-body
+    .row
+      .col-12
+        = f.text_field :code, disabled: true
+
+      .col-12.col-md-3
+        = f.select :camp_location_id, CampLocation.accessible_by(current_ability).pluck(:name, :id),
+          { label: model_name(CampLocation), include_blank: "Select #{model_name(CampLocation)}" },
+          { required: true, class: 'camp-location-select' }
+
+      .col-12.col-md-3
+        = f.select :season_id, (f.object.camp_location ? f.object.camp_location.seasons.accessible_by(current_ability).pluck(:name, :id) : []),
+          { label: model_name(Season), include_blank: "Select #{model_name(Season)}" },
+          { required: true, disabled: f.object.camp_location.blank?, class: 'season-select', data: { prompt: "Select #{model_name(Season)}" } }
+
+      .col-12.col-md-3
+        = f.select :camp_id, (f.object.season ? f.object.season.camps.accessible_by(current_ability).pluck(:name, :id) : []),
+          { label: model_name(Camp), include_blank: "Select #{model_name(Camp)}" },
+          { required: true, disabled: f.object.season.blank?, class: 'camp-select', data: { prompt: "Select #{model_name(Camp)}" } }
+
+      .col-12.col-md-3
+        = f.select :cabin_id, (f.object.camp ? f.object.camp.cabins.accessible_by(current_ability).pluck(:name, :id) : []),
+          { label: model_name(Cabin), include_blank: "Select #{model_name(Cabin)}" },
+          { required: true, disabled: f.object.camp.blank?, class: 'cabin-select', data: { prompt: "Select #{model_name(Cabin)}" } }

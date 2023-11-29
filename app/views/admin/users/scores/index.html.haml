@@ -1,0 +1,16 @@
+- title_bar 'Scores'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_name(Theme)
+      %th High Score
+
+  %tbody
+    - @scores.each do |theme, score|
+      %tr{ id: dom_id(score) }
+        %td
+          = theme.name
+          - unless theme.active?
+            %small (Inactive)
+        %td= score.value

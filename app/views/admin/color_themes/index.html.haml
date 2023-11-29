@@ -1,0 +1,32 @@
+- title_bar model_name(ColorTheme, plural: true) do
+  = new_button(new_button_label(ColorTheme), new_color_theme_path)
+
+%p= page_entries_info @color_themes, entry_name: entry_name_label(ColorTheme)
+
+= paginate @color_themes
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Preview
+        %th Name
+        %th App Layout
+        %th.actions Action
+
+    %tbody
+      - @color_themes.each do |color_theme|
+        %tr{ id: dom_id(color_theme) }
+          %td
+            .preview.img-thumbnail
+              = render 'admin/color_themes/preview', color_theme: color_theme
+          %td= color_theme.name
+          %td= color_theme.app_layout.camelize
+          %td.actions
+            = edit_button(edit_color_theme_path(color_theme),'')
+
+  = paginate @color_themes
+
+  - if @color_themes.none?
+    .card.mb-3
+      .card-body.text-center.disabled= no_items_label(ColorTheme)

@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+# Separate Guard file to run the test suite in a mode that optimizes for fixing a specific
+# test or set of tests, by letting a developer focus them and then always running that
+# test, no matter what source code file is modified.
+#
+# @note The setup expects the developer to modify or save the *_spec test, before attempting
+# to modify source code files. Each time a *_spec.rb file is modified and saved, it
+# becomes the file that is always run.
+guard :rspec, cmd: 'bundle exec rspec' do
+  last_run_spec = nil
+
+  watch(%r{^spec/.+_spec\.rb$}) do |spec|
+    last_run_spec = spec[0]
+  end
+
+  watch(%r{^(app|lib|spec)/(.+)(?<!_spec\.rb)$}) do
+    # noinspection RubyBlockToMethodReference
+    last_run_spec
+  end
+end

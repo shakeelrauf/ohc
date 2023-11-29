@@ -1,0 +1,43 @@
+th,
+td {
+  &.thumbnail,
+  &.actions {
+    text-align: right;
+    width: 1px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    white-space: nowrap;
+  }
+
+  &.whitespace-wrap {
+    white-space: normal;
+  }
+}
+
+.table-align-middle {
+  td {
+    vertical-align: middle;
+  }
+}
+
+.disabled {
+  opacity: .6;
+}
+
+.preview.img-thumbnail {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.color-theme-preview {
+  border: 1px solid $color-black-25;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}

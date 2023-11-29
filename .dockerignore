@@ -1,0 +1,33 @@
+# Docker files still send to Docker Daemon, but ignored by COPY and ADD
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all git directories (including submodules)
+**/.git
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+
+Thumbs.db
+.DS_Store
+
+# Ignore coverage reports
+/coverage
+
+# Don't copy any env files into the Docker image - these are intended for local development only
+.env*
+
+# Documentation
+/.yardoc
+/doc

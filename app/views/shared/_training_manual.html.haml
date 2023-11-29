@@ -1,0 +1,3 @@
+- if help_manual_url = Setting.find_by(name: 'Training Manual URL')&.value
+  = sidebar_sublist('Help') do
+    = nav_link 'Training Manual', help_manual_url, 'help-circle', target: '_blank'

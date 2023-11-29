@@ -1,0 +1,61 @@
+- title_bar @theme.name
+
+%h3 Stats
+
+.row.mb-3
+  .col-4.text-center
+    .card
+      .card-body
+        %h4 High Score
+        %p= @scores.maximum(:value) || 0
+
+  .col-4.text-center
+    .card
+      .card-body
+        %h4 Low Score
+        %p= @scores.minimum(:value) || 0
+
+  .col-4.text-center
+    .card
+      .card-body
+        %h4 Average Score
+        %p= @scores.average(:value)&.round(2) || 0
+
+%h3 Breakdown
+
+.row.mb-3.align-items-center
+  .col-12.col-md-4
+    = page_entries_info @paginated_scores
+
+  .col-12.col-md-8
+    - unless @theme.camp_location
+      = search_form_for @search, url: theme_path(@theme) do |s|
+        .input-group
+          = s.select :camp_location_id, CampLocation.accessible_by(current_ability).order(:name).pluck(:name, :id), { selected: @camp_location&.id, include_blank: "All #{model_name(CampLocation, plural: true)}" }, { class: 'form-control form-control-sm' }
+          .input-group-append
+            = s.submit 'Search', class: 'btn btn-sm btn-secondary'
+
+= paginate @paginated_scores
+
+- if @scores.any?
+  .card.table-responsive
+    %table.table.table-striped.table-borderless.mb-0
+      %thead
+        %tr
+          %th= sort_link(@search, :user_first_name)
+          %th= sort_link(@search, :user_last_name)
+          %th= sort_link(@search, :updated_at, 'Last Updated')
+          %th= sort_link(@search, :value, 'Score')
+
+      %tbody
+        - @scores.each do |score|
+          %tr{ id: dom_id(score) }
+            %td= score.user.first_name
+            %td= score.user.last_name
+            %td= formatted_date(score.updated_at, default: '')
+            %td= score.value
+- else
+  .card.mb-3
+    .card-body.text-center.disabled No Scores
+
+= paginate @paginated_scores

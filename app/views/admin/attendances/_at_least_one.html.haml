@@ -1,0 +1,20 @@
+:javascript
+  document.addEventListener('turbolinks:load', () => {
+    $('#attendances').on('cocoon:after-insert', function() {
+      showHideDeleteLink();
+    });
+
+    $('#attendances').on('cocoon:after-remove', function() {
+      showHideDeleteLink();
+    });
+
+    showHideDeleteLink();
+
+    function showHideDeleteLink() {
+      if ($('#attendances .nested-fields:visible').length > 1) {
+        $('.remove_fields').css('visibility', 'visible');
+      } else {
+        $('.remove_fields:visible').first().css('visibility', 'hidden');
+      }
+    }
+  });

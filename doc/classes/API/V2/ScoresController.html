@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>API::V2::ScoresController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <meta property="og:title" value="API::V2::ScoresController">
+
+  
+
+    <meta name="keywords" content="API::V2::ScoresController class">
+  
+    <meta name="keywords" content="index, create">
+  
+</head>
+
+<body>
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span>
+            API::V2::ScoresController
+            
+                <span class="parent">&lt;
+                    
+                    <a href="BaseController.html">API::V2::BaseController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/app/controllers/api/v2/scores_controller_rb.html">app/controllers/api/v2/scores_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <main id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+    
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../../../classes/API/V2/ScoresController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-create-label-5BPOST-5D+-2Fapi-2Fv2-2Fscores.json">[POST] /api/v2/scores.json</h2>
+
+<p>Create a score</p>
+
+<h4 id="method-i-create-label-Returns">Returns</h4>
+<ul><li>
+<p>201 - created</p>
+</li><li>
+<p>422 - unprocessable entity</p>
+</li></ul>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/scores_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:data</span>].<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">respond_to_score_array</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">score</span> = <span class="ruby-constant">Score</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">allowed_params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">user:</span> <span class="ruby-identifier">current_user</span>))
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">score</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">ScoreSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">score</span>), <span class="ruby-value">status:</span> <span class="ruby-value">:created</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">render_object_error</span>(<span class="ruby-value">object:</span> <span class="ruby-identifier">score</span>, <span class="ruby-value">serializer:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">ScoreSerializer</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../../../classes/API/V2/ScoresController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+
+          
+            <div class="description">
+              <h2 id="method-i-index-label-5BGET-5D+-2Fapi-2Fv2-2Fscores.json">[GET] /api/v2/scores.json</h2>
+
+<p>Retrieve current users highscores for each active theme</p>
+
+<h4 id="method-i-index-label-Returns">Returns</h4>
+
+<p>The high scores</p>
+            </div>
+          
+
+          
+
+          
+
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                 Source: 
+
+                
+                  <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+
+                
+
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/api/v2/scores_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
+  <span class="ruby-comment"># INFO: https://gabi.dev/2016/03/03/group-by-are-you-sure-you-know-it/</span>
+  <span class="ruby-identifier">scores</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">scores</span>
+                       .<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;MAX(value) as value,
+                                any_value(scores.id) AS id,
+                                any_value(scores.created_at) AS created_at,
+                                any_value(scores.updated_at) AS updated_at,
+                                any_value(scores.scope_type) AS scope_type,
+                                scores.scope_id,
+                                any_value(scores.user_id) AS user_id&#39;</span>)
+                       .<span class="ruby-identifier">includes</span>(<span class="ruby-value">:scope</span>)
+                       .<span class="ruby-identifier">where</span>(<span class="ruby-value">scope_type:</span> <span class="ruby-string">&#39;Theme&#39;</span>, <span class="ruby-value">scope_id:</span> <span class="ruby-constant">Theme</span>.<span class="ruby-identifier">active</span>.<span class="ruby-identifier">ids</span>)
+                       .<span class="ruby-identifier">group</span>(<span class="ruby-value">:scope_id</span>)
+
+  <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-constant">API</span><span class="ruby-operator">::</span><span class="ruby-constant">V2</span><span class="ruby-operator">::</span><span class="ruby-constant">ScoreSerializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">scores</span>, <span class="ruby-identifier">serializer_params</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+      
+    
+  
+</div>
+
+    </main>
+  </body>
+</html>

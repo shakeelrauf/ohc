@@ -1,0 +1,13 @@
+- if camp
+  %ul.list-unstyled.mb-0
+    %li
+      %strong= "#{model_name(CampLocation)}:"
+      = camp.season.camp_location.name
+
+    %li
+      %strong= "#{model_name(Season)}:"
+      = camp.season.name
+
+    %li
+      %strong= "#{model_name(Camp)}:"
+      = camp.name

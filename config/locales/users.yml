@@ -1,0 +1,4 @@
+en:
+  users:
+    chat_auth_token:
+      failure: A CometChat auth token could not be created.

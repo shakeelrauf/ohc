@@ -1,0 +1,34 @@
+- title_bar model_name(@new_media_item.class, plural: true) do
+  = new_button(new_button_label(@new_media_item.class), @camp ? new_camp_media_item_path(@camp) : new_media_item_path)
+
+%p= page_entries_info @media_items, entry_name: entry_name_label(@new_media_item.class)
+
+= paginate @media_items
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Thumbnail
+        %th Uploaded By
+        %th= sort_link(@search, :updated_at, text: 'Updated')
+        %th= sort_link(@search, :active)
+        %th.actions Action
+
+    %tbody
+      - @media_items.each do |media_item|
+        %tr{ id: dom_id(media_item), class: ('disabled' unless media_item.active?) }
+          %td
+            .preview.img-thumbnail
+              - if media_item.attachment.image?
+                = image_tag(media_item.attachment.variant(resize: '50x50'), title: media_item.attachment.filename)
+              - elsif media_item.attachment.previewable?
+                = image_tag(media_item.attachment.preview(resize_to_limit: [50, 50]), title: media_item.attachment.filename)
+
+          %td= media_item.user.full_name
+          %td= formatted_date(media_item.updated_at, default: '')
+          %td= media_item.active? ? 'Visible' : 'Hidden'
+          %td.actions
+            = edit_button(@camp ? edit_camp_media_item_path(media_item.camp, media_item) : edit_media_item_path(media_item),'')
+
+  = paginate @media_items

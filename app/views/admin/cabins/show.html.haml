@@ -1,0 +1,56 @@
+- title_bar model_name(User::Child, plural: true) do
+  = new_button('Add Person', new_camp_attendance_path(@cabin.camp, cabin_id: @cabin.id), btn_style: 'btn-success')
+
+= render 'shared/search_form', search_path: camp_cabin_path(@cabin.camp, @cabin), message: 'Any combination of First Name, Last Name or Code'
+
+%h2= model_name(User::Admin, plural: true)
+
+= paginate @admin_attendances, param_name: :admin_page
+
+%table.table.table-striped.table-responsive-md.table-align-middle
+  %thead
+    %tr
+      %th.thumbnail Code
+      %th Name
+      %th Email
+      %th Last Active
+      %th.actions
+
+  %tbody
+    - AttendanceDecorator.decorate_collection(@admin_attendances).each do |attendance|
+      %tr{ id: dom_id(attendance) }
+        %td= attendance.formatted_code
+        %td= attendance.user.full_name
+        %td= attendance.user.email
+        %td= formatted_date(attendance.user.last_active_at)
+        %td
+          = action_button(icon('home'), "Change #{model_name(Cabin)}", edit_camp_attendance_path(@cabin.camp, attendance))
+
+= paginate @admin_attendances, param_name: :admin_page
+
+%h2= model_name(User::Child, plural: true)
+
+= paginate @child_attendances, param_name: :child_page
+
+%table.table.table-striped.table-responsive-md.table-align-middle
+  %thead
+    %tr
+      %th.thumbnail Code
+      %th Name
+      %th Date of Birth
+      %th Parent Email
+      %th Last Active
+      %th.actions
+
+  %tbody
+    - AttendanceDecorator.decorate_collection(@child_attendances).each do |attendance|
+      %tr{ id: dom_id(attendance) }
+        %td= attendance.formatted_code
+        %td= attendance.user.full_name
+        %td= attendance.user.date_of_birth
+        %td= attendance.user.email
+        %td= formatted_date(attendance.user.last_active_at)
+        %td
+          = action_button(icon('home'), "Change #{model_name(Cabin)}", edit_camp_attendance_path(@cabin.camp, attendance))
+
+= paginate @child_attendances, param_name: :child_page

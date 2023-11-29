@@ -1,0 +1,7 @@
+- title_bar new_button_label(WelcomeVideo)
+
+= bootstrap_form_with model: @welcome_video, url: welcome_videos_path, local: true do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit create_button_label(WelcomeVideo), class: 'btn btn-success'

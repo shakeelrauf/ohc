@@ -1,0 +1,8 @@
+- title_bar "Edit #{@tenant.name}" do
+  = delete_button(@tenant, text: "Delete #{@tenant.name}", remote: false, disabled: !@tenant.can_be_deleted?)
+
+= bootstrap_form_with model: @tenant, url: tenant_path(@tenant), local: true do |f|
+  = render 'form', f: f
+
+  = f.form_group do
+    = f.submit update_button_label(Tenant), class: 'btn btn-success'

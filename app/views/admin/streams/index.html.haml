@@ -1,0 +1,31 @@
+- title_bar 'Stream Pool' do
+  = new_button(new_button_label(Stream), new_stream_path)
+
+%p= page_entries_info @streams, entry_name: entry_name_label(Stream)
+
+= paginate @streams
+
+.card.table-responsive
+  %table.table.table-striped.table-borderless.mb-0
+    %thead
+      %tr
+        %th Name
+        %th Input ID
+        %th Channel ID
+        %th Live Status
+        %th.actions Action
+
+    %tbody
+      - @streams.each do |stream|
+        %tr{ id: dom_id(stream) }
+          %td= stream.name
+          %td= stream.aws_input_id
+          %td= stream.aws_channel_id
+          %td= stream.channel.state
+          %td.actions
+            - unless stream.idle?
+              = link_to "#{icon('stop-circle')} Stop".html_safe, [:stop, stream], method: :put, class: 'btn btn-sm btn-danger', data: { confirm: 'Are you sure?' }
+
+            = edit_button([:edit, stream],'')
+
+= paginate @streams

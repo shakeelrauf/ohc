@@ -1,0 +1,90 @@
+.conversation--text {
+  flex: 0 0 auto;
+  padding-left: .5em;
+  width: 180px;
+}
+
+.conversation--text,
+.conversation--last-message {
+  align-items: center;
+  display: flex;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.conversation--avatar {
+  flex: 0 0 auto;
+  padding-right: .5em;
+  width: 80px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.conversation--last-message {
+  margin: -.7em 0;
+
+  small {
+    color: $color-grey-dove;
+  }
+}
+
+.conversation--messages-viewport {
+  height: calc(100vh - 150px);
+}
+
+.message--image-container {
+  height: 500px;
+  max-height: 30vh;
+  width: 100%;
+}
+
+.message--image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.conversation--chat-window {
+  display: flex;
+  flex: 1 1 auto;
+  margin-top: 3em;
+  overflow: hidden;
+
+  .card-body {
+    overflow: auto;
+    padding-bottom: 0;
+    padding-top: 0
+  }
+}
+
+.conversation--message {
+  margin-bottom: 1em;
+
+  &:first-child {
+    margin-top: 1em;
+  }
+}
+
+.conversation--message-body {
+  align-items: center;
+  display: flex;
+  margin-bottom: .2em;
+  margin-top: 1.3em;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  small {
+    color: $color-grey-dove;
+  }
+}
+
+.conversation--user {
+  &__two {
+    background-color: $color-black-10;
+  }
+}

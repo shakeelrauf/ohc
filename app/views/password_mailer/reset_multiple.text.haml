@@ -1,0 +1,37 @@
+Voir le bas de la page pour les explications en français.
+
+#{'------------------'}
+
+Hey!
+
+An account associated with your email address has forgotten their account details.
+
+- if @registered.any?
+  These are the registered users associated with your email:
+
+  - @registered.each do |data|
+    * #{data[:label]} - #{data[:link]}
+
+- if @unregistered.any?
+  Unregistered Codes:
+
+  - @unregistered.each do |data|
+    * #{data[:label]} - #{data[:code]}
+
+#{'------------------'}
+
+Attention!
+
+Un utilisateur du compte associé à votre adresse électronique a oublié les renseignements sur le compte.
+
+- if @registered.any?
+  Voici les utilisateurs inscrits et associés à votre adresse électronique:
+
+  - @registered.each do |data|
+    * #{data[:label]} - #{data[:link]}&locale=fr
+
+- if @unregistered.any?
+  Codes non inscrits:
+
+  - @unregistered.each do |data|
+    * #{data[:label]} - #{data[:code]}
